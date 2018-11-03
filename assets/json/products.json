@@ -1,0 +1,161 @@
+{
+    "totalNum": 13,
+    "pageNo": 1,
+    "pageSize": 20,
+    "listData": [{
+      "id": 13,
+      "title": "5积分商品",
+      "point": 5,
+      "inStockQuantity": 99,
+      "cover": {
+        "fileType": "png",
+        "thumb": "http://i1.cdn.test.17173.com/gdthue/YWxqaGBf/snsapp/20181030/VHFVuibmBbqlEpa.png!a-6-240x240.jpg",
+        "height": 450,
+        "width": 600,
+        "url": "http://i1.cdn.test.17173.com/gdthue/YWxqaGBf/snsapp/20181030/VHFVuibmBbqlEpa.png",
+        "original": "http://i1.cdn.test.17173.com/gdthue/YWxqaGBf/snsapp/20181030/VHFVuibmBbqlEpa.png"
+      }
+    },
+      {
+        "id": 12,
+        "title": "测试刷新333",
+        "point": 102,
+        "inStockQuantity": 100,
+        "cover": null
+      },
+      {
+        "id": 11,
+        "title": "测试10",
+        "point": 2,
+        "inStockQuantity": 3,
+        "cover": null
+      },
+      {
+        "id": 10,
+        "title": "测试9",
+        "point": 3,
+        "inStockQuantity": 0,
+        "cover": null
+      },
+      {
+        "id": 9,
+        "title": "东方大厦",
+        "point": 5786,
+        "inStockQuantity": 9999,
+        "cover": {
+          "fileType": "jpg",
+          "thumb": "http://i1.cdn.test.17173.com/gdthue/YWxqaGBf/snsapp/20181025/nmlcMybmAvhApdr.jpg!a-6-240x240.jpg",
+          "height": 540,
+          "width": 960,
+          "url": "http://i1.cdn.test.17173.com/gdthue/YWxqaGBf/snsapp/20181025/nmlcMybmAvhApdr.jpg",
+          "original": "http://i1.cdn.test.17173.com/gdthue/YWxqaGBf/snsapp/20181025/nmlcMybmAvhApdr.jpg"
+        }
+      },
+      {
+        "id": 8,
+        "title": "测试88",
+        "point": 2,
+        "inStockQuantity": 4,
+        "cover": null
+      },
+      {
+        "id": 7,
+        "title": "54545",
+        "point": 2,
+        "inStockQuantity": 3,
+        "cover": {
+          "fileType": "jpg",
+          "thumb": "http://i1.cdn.test.17173.com/gdthue/YWxqaGBf/snsapp/20181025/RnllWUbmAvhyeey.jpg!a-6-240x240.jpg",
+          "height": 540,
+          "width": 960,
+          "url": "http://i1.cdn.test.17173.com/gdthue/YWxqaGBf/snsapp/20181025/RnllWUbmAvhyeey.jpg",
+          "original": "http://i1.cdn.test.17173.com/gdthue/YWxqaGBf/snsapp/20181025/RnllWUbmAvhyeey.jpg"
+        }
+      },
+      {
+        "id": 6,
+        "title": "测试777",
+        "point": 3,
+        "inStockQuantity": 2,
+        "cover": {
+          "fileType": "png",
+          "thumb": "http://i1.cdn.test.17173.com/gdthue/YWxqaGBf/snsapp/20181025/DapmMMbmAvhwqcl.png!a-6-240x240.jpg",
+          "height": 640,
+          "width": 1500,
+          "url": "http://i1.cdn.test.17173.com/gdthue/YWxqaGBf/snsapp/20181025/DapmMMbmAvhwqcl.png",
+          "original": "http://i1.cdn.test.17173.com/gdthue/YWxqaGBf/snsapp/20181025/DapmMMbmAvhwqcl.png"
+        }
+      },
+      {
+        "id": 5,
+        "title": "666",
+        "point": 28,
+        "inStockQuantity": 11,
+        "cover": {
+          "fileType": "png",
+          "thumb": "http://i1.cdn.test.17173.com/gdthue/YWxqaGBf/snsapp/20181025/OgcPRTbmAvhvxjB.png!a-6-240x240.jpg",
+          "height": 1100,
+          "width": 870,
+          "url": "http://i1.cdn.test.17173.com/gdthue/YWxqaGBf/snsapp/20181025/OgcPRTbmAvhvxjB.png",
+          "original": "http://i1.cdn.test.17173.com/gdthue/YWxqaGBf/snsapp/20181025/OgcPRTbmAvhvxjB.png"
+        }
+      },
+      {
+        "id": 4,
+        "title": "444",
+        "point": 12,
+        "inStockQuantity": 11,
+        "cover": {
+          "fileType": "jpg",
+          "thumb": "http://i1.cdn.test.17173.com/gdthue/YWxqaGBf/snsapp/20181025/euzuppbmAvhuCkj.jpg!a-6-240x240.jpg",
+          "height": 151,
+          "width": 153,
+          "url": "http://i1.cdn.test.17173.com/gdthue/YWxqaGBf/snsapp/20181025/euzuppbmAvhuCkj.jpg",
+          "original": "http://i1.cdn.test.17173.com/gdthue/YWxqaGBf/snsapp/20181025/euzuppbmAvhuCkj.jpg"
+        }
+      },
+      {
+        "id": 3,
+        "title": "测试测试测试测试测试测试",
+        "point": 4,
+        "inStockQuantity": 48,
+        "cover": {
+          "fileType": "png",
+          "thumb": "http://i1.cdn.test.17173.com/gdthue/YWxqaGBf/snsapp/20181025/PpMivcbmAvhtmbe.png!a-6-240x240.jpg",
+          "height": 222,
+          "width": 222,
+          "url": "http://i1.cdn.test.17173.com/gdthue/YWxqaGBf/snsapp/20181025/PpMivcbmAvhtmbe.png",
+          "original": "http://i1.cdn.test.17173.com/gdthue/YWxqaGBf/snsapp/20181025/PpMivcbmAvhtmbe.png"
+        }
+      },
+      {
+        "id": 2,
+        "title": "5555",
+        "point": 1000,
+        "inStockQuantity": 17,
+        "cover": {
+          "fileType": "png",
+          "thumb": "http://i1.cdn.test.17173.com/gdthue/YWxqaGBf/snsapp/20181025/ToMaQwbmAuqCshp.png!a-6-240x240.jpg",
+          "height": 498,
+          "width": 598,
+          "url": "http://i1.cdn.test.17173.com/gdthue/YWxqaGBf/snsapp/20181025/ToMaQwbmAuqCshp.png",
+          "original": "http://i1.cdn.test.17173.com/gdthue/YWxqaGBf/snsapp/20181025/ToMaQwbmAuqCshp.png"
+        }
+      },
+      {
+        "id": 1,
+        "title": "HEROCROSS 蝙超 Q版超合金超人",
+        "point": 1,
+        "inStockQuantity": 3,
+        "cover": {
+          "fileType": "png",
+          "thumb": "http://i1.cdn.test.17173.com/gdthue/YWxqaGBf/snsapp/20181029/nBiFmabmAFlDzBl.png!a-6-240x240.jpg",
+          "height": 634,
+          "width": 795,
+          "url": "http://i1.cdn.test.17173.com/gdthue/YWxqaGBf/snsapp/20181029/nBiFmabmAFlDzBl.png",
+          "original": "http://i1.cdn.test.17173.com/gdthue/YWxqaGBf/snsapp/20181029/nBiFmabmAFlDzBl.png"
+        }
+      }
+    ],
+    "extras": null
+}

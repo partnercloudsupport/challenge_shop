@@ -1,0 +1,22 @@
+{
+  "id": 2,
+  "title": "5555",
+  "point": 1000,
+  "inStockQuantity": 17,
+  "images": [
+    {
+      "fileType": "png",
+      "thumb": "http://i1.cdn.test.17173.com/gdthue/YWxqaGBf/snsapp/20181025/ToMaQwbmAuqCshp.png!a-6-240x240.jpg",
+      "height": 498,
+      "width": 598,
+      "url": "http://i1.cdn.test.17173.com/gdthue/YWxqaGBf/snsapp/20181025/ToMaQwbmAuqCshp.png",
+      "original": "http://i1.cdn.test.17173.com/gdthue/YWxqaGBf/snsapp/20181025/ToMaQwbmAuqCshp.png"
+    }
+  ],
+  "exchangeStatus": {
+    "canExchange": false,
+    "message": "未登录用户无法兑换",
+    "type": "require-login"
+  },
+  "kindLabel": "虚拟商品"
+}

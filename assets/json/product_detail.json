@@ -1,0 +1,30 @@
+{
+  "id": 13,
+  "title": "5积分商品",
+  "point": 5,
+  "inStockQuantity": 99,
+  "images": [
+    {
+      "fileType": "png",
+      "thumb": "http://i1.cdn.test.17173.com/gdthue/YWxqaGBf/snsapp/20181030/VHFVuibmBbqlEpa.png!a-6-240x240.jpg",
+      "height": 450,
+      "width": 600,
+      "url": "http://i1.cdn.test.17173.com/gdthue/YWxqaGBf/snsapp/20181030/VHFVuibmBbqlEpa.png",
+      "original": "http://i1.cdn.test.17173.com/gdthue/YWxqaGBf/snsapp/20181030/VHFVuibmBbqlEpa.png"
+    },
+    {
+      "fileType": "png",
+      "thumb": "http://i1.cdn.test.17173.com/gdthue/YWxqaGBf/snsapp/20181030/jYWdbKbmBbqmaoF.png!a-6-240x240.jpg",
+      "height": 450,
+      "width": 600,
+      "url": "http://i1.cdn.test.17173.com/gdthue/YWxqaGBf/snsapp/20181030/jYWdbKbmBbqmaoF.png",
+      "original": "http://i1.cdn.test.17173.com/gdthue/YWxqaGBf/snsapp/20181030/jYWdbKbmBbqmaoF.png"
+    }
+  ],
+  "exchangeStatus": {
+    "canExchange": false,
+    "message": "未登录用户无法兑换",
+    "type": "require-login"
+  },
+  "kindLabel": "实体商品"
+}
