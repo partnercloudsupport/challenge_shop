@@ -1,3 +1,5 @@
+import 'package:challenge_shop/data/mock_service.dart';
+import 'package:challenge_shop/data/model/score_history_info.dart';
 import 'package:challenge_shop/page/score/score_overdue_alarm.dart';
 import 'package:flutter/material.dart';
 
@@ -11,6 +13,22 @@ class ScoreRecordPage extends StatefulWidget {
 }
 
 class ScoreRecordPageState extends State<ScoreRecordPage> {
+  MockService _mockService = MockService();
+  List<ScoreHistoryInfo> scoreList;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _mockService.getScoreHistory().listen((pageInfo) {
+      setState(() {
+        scoreList = pageInfo.listData;
+      });
+    }, onError: (error) {
+      print("error");
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,9 +43,9 @@ class ScoreRecordPageState extends State<ScoreRecordPage> {
             ScoreOverdueAlarm(),
             Expanded(
               child: ListView.builder(
-                itemCount: 20,
+                itemCount: scoreList.length,
                 itemBuilder: (context, index) {
-                  return ScoreRecordCell();
+                  return ScoreRecordCell(scoreList[index]);
                 },
               ),
             ),

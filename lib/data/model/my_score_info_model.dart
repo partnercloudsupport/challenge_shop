@@ -1,95 +1,130 @@
+import 'package:challenge_shop/data/model/product.dart';
 import 'package:json_annotation/json_annotation.dart';
-
 part 'my_score_info_model.g.dart';
 
+
 @JsonSerializable()
-class MyScoreInfoModel {
+class MyScoreInfoModel extends Object {
+
+  @JsonKey(name: 'totalPoint')
   int totalPoint;
-  List<LatestExchangeStatus> latestExchangeStatus;
+
+  @JsonKey(name: 'pointExpireNotice')
   PointExpireNotice pointExpireNotice;
 
-  MyScoreInfoModel(
-      this.totalPoint, this.latestExchangeStatus, this.pointExpireNotice);
+  @JsonKey(name: 'latestExchangeStatus')
+  List<LatestExchangeStatus> latestExchangeStatus;
 
-  factory MyScoreInfoModel.fromJson(Map<String, dynamic> json) =>
-      _$MyScoreInfoModelFromJson(json);
+  MyScoreInfoModel(this.totalPoint,this.pointExpireNotice,this.latestExchangeStatus,);
+
+  factory MyScoreInfoModel.fromJson(Map<String, dynamic> srcJson) => _$MyScoreInfoModelFromJson(srcJson);
 
   Map<String, dynamic> toJson() => _$MyScoreInfoModelToJson(this);
+
 }
 
+
 @JsonSerializable()
-class PointExpireNotice {
+class PointExpireNotice extends Object {
+
+  @JsonKey(name: 'point')
   int point;
-  bool visible;
+
+  @JsonKey(name: 'date')
   String date;
 
-  PointExpireNotice(this.point, this.visible, this.date);
+  @JsonKey(name: 'visible')
+  bool visible;
 
-  factory PointExpireNotice.fromJson(Map<String, dynamic> json) =>
-      _$PointExpireNoticeFromJson(json);
+  PointExpireNotice(this.point,this.date,this.visible,);
+
+  factory PointExpireNotice.fromJson(Map<String, dynamic> srcJson) => _$PointExpireNoticeFromJson(srcJson);
 
   Map<String, dynamic> toJson() => _$PointExpireNoticeToJson(this);
+
 }
 
+
 @JsonSerializable()
-class LatestExchangeStatus {
-  int createTime;
+class LatestExchangeStatus extends Object {
+
+  @JsonKey(name: 'id')
   int id;
+
+  @JsonKey(name: 'product')
   Product product;
+
+  @JsonKey(name: 'user')
   User user;
 
-  LatestExchangeStatus(this.createTime, this.id, this.product, this.user);
+  @JsonKey(name: 'createTime')
+  int createTime;
 
-  factory LatestExchangeStatus.fromJson(Map<String, dynamic> json) =>
-      _$LatestExchangeStatusFromJson(json);
+  LatestExchangeStatus(this.id,this.product,this.user,this.createTime,);
+
+  factory LatestExchangeStatus.fromJson(Map<String, dynamic> srcJson) => _$LatestExchangeStatusFromJson(srcJson);
 
   Map<String, dynamic> toJson() => _$LatestExchangeStatusToJson(this);
+
 }
 
-@JsonSerializable()
-class User {
-  int id;
-  String avatar;
-  String nickname;
-  String sex;
-  bool verified;
 
-  User(this.id, this.avatar, this.nickname, this.sex, this.verified);
 
-  factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
-
-  Map<String, dynamic> toJson() => _$UserToJson(this);
-}
 
 @JsonSerializable()
-class Product {
-  int id;
-  int inStockQuantity;
-  int point;
-  String title;
-  Cover cover;
+class Cover extends Object {
 
-  Product(this.id, this.inStockQuantity, this.point, this.title, this.cover);
-
-  factory Product.fromJson(Map<String, dynamic> json) =>
-      _$ProductFromJson(json);
-
-  Map<String, dynamic> toJson() => _$ProductToJson(this);
-}
-
-@JsonSerializable()
-class Cover {
-  int height;
-  int width;
+  @JsonKey(name: 'fileType')
   String fileType;
-  String original;
+
+  @JsonKey(name: 'thumb')
   String thumb;
+
+  @JsonKey(name: 'height')
+  int height;
+
+  @JsonKey(name: 'width')
+  int width;
+
+  @JsonKey(name: 'url')
   String url;
 
-  Cover(this.height, this.width, this.fileType, this.original, this.thumb,
-      this.url);
+  @JsonKey(name: 'original')
+  String original;
 
-  factory Cover.fromJson(Map<String, dynamic> json) => _$CoverFromJson(json);
+  Cover(this.fileType,this.thumb,this.height,this.width,this.url,this.original,);
+
+  factory Cover.fromJson(Map<String, dynamic> srcJson) => _$CoverFromJson(srcJson);
 
   Map<String, dynamic> toJson() => _$CoverToJson(this);
+
 }
+
+
+@JsonSerializable()
+class User extends Object {
+
+  @JsonKey(name: 'id')
+  int id;
+
+  @JsonKey(name: 'nickname')
+  String nickname;
+
+  @JsonKey(name: 'avatar')
+  String avatar;
+
+  @JsonKey(name: 'sex')
+  String sex;
+
+  @JsonKey(name: 'verified')
+  String verified;
+
+  User(this.id,this.nickname,this.avatar,this.sex,this.verified,);
+
+  factory User.fromJson(Map<String, dynamic> srcJson) => _$UserFromJson(srcJson);
+
+  Map<String, dynamic> toJson() => _$UserToJson(this);
+
+}
+
+

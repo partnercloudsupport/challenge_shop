@@ -1,10 +1,17 @@
+import 'package:challenge_shop/data/viewModel/shop_banner_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:marquee/marquee.dart';
 
 class ShopNews extends StatelessWidget {
+  ShopBannerViewmodel shopBannerViewmodel;
+
+  ShopNews(this.shopBannerViewmodel);
+
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
+    if (shopBannerViewmodel == null) {
+      return Container();
+    }
     return Container(
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,

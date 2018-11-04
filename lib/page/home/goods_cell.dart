@@ -13,8 +13,7 @@ class GoodsCell extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
         onTap: () {
-          Navigator.of(context)
-              .pushNamed(GoodsDetailPage.routePath);
+          Navigator.of(context).pushNamed(GoodsDetailPage.routePath);
         },
         child: Card(
           elevation: 1.5,
@@ -23,12 +22,12 @@ class GoodsCell extends StatelessWidget {
             children: <Widget>[
               AspectRatio(
                 aspectRatio: 1,
-                child: Image.network(imgUrl, fit: BoxFit.fill),
+                child: Image.network(imgUrl ?? "", fit: BoxFit.fill),
               ),
               Padding(
                 padding: EdgeInsets.all(10),
                 child: Text(
-                  "商品商品商品商品商品商品商品商品商品商品商品",
+                  this.name,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   textAlign: TextAlign.left,
@@ -44,11 +43,11 @@ class GoodsCell extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: <Widget>[
-                    const Text.rich(
+                    Text.rich(
                       TextSpan(
                         children: <TextSpan>[
                           TextSpan(
-                              text: "1000",
+                              text: "${this.score}",
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 color: Color(0xff0CC975),
@@ -64,7 +63,7 @@ class GoodsCell extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      "剩余15件",
+                      "剩余${this.left}件",
                       style: TextStyle(color: Color(0xffAAAAAA), fontSize: 12),
                     )
                   ],

@@ -1,6 +1,11 @@
+import 'package:challenge_shop/data/model/score_history_info.dart';
 import 'package:flutter/material.dart';
 
 class ScoreRecordCell extends StatelessWidget {
+  ScoreHistoryInfo scoreHistoryInfo;
+
+  ScoreRecordCell(this.scoreHistoryInfo);
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -10,7 +15,7 @@ class ScoreRecordCell extends StatelessWidget {
           Positioned(
             height: 15,
             child: Text(
-              "帖子入围奖励",
+              "${scoreHistoryInfo.title}",
               style: TextStyle(fontSize: 15, color: Color(0xff1c1c1c)),
             ),
             left: 16,
@@ -19,7 +24,7 @@ class ScoreRecordCell extends StatelessWidget {
           Positioned(
             height: 15,
             child: Text(
-              "+2600",
+              "${scoreHistoryInfo.direct}${scoreHistoryInfo.point}",
               style: TextStyle(fontSize: 15, color: Color(0xff1c1c1c)),
             ),
             right: 15,
@@ -29,7 +34,7 @@ class ScoreRecordCell extends StatelessWidget {
             height: 15,
             width: 190,
             child: Text(
-              "#队友说他是王牌，想要你的AWM队友说他是王牌，想要你的AWM队友说他是王牌，想要你的AWM队友说他是王牌，想要你的AWM队友说他是王牌，想要你的AWM",
+              "#${scoreHistoryInfo.challengeTitle}",
               overflow: TextOverflow.ellipsis,
               maxLines: 1,
               style: TextStyle(fontSize: 12, color: Color(0xffaaaaaa)),

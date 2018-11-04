@@ -1,18 +1,45 @@
+import 'package:challenge_shop/data/mock_service.dart';
+import 'package:challenge_shop/data/model/product.dart';
+import 'package:challenge_shop/data/viewModel/shop_banner_viewmodel.dart';
 import 'package:flutter/material.dart';
 
 import 'goods_cell.dart';
 import 'shop_header.dart';
 
 class HomePage extends StatefulWidget {
-  static const String routePath="/shop/homePage";
-
-
+  static const String routePath = "/shop/homePage";
 
   @override
   State<StatefulWidget> createState() => new _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
+  ShopBannerViewmodel _shopBannerViewmodel;
+  List<Product> products;
+
+  MockService _mockService = MockService();
+
+  @override
+  void initState() {
+    super.initState();
+
+    _mockService.getHomeBannerModel().listen((shopBannerViewmodel) {
+      setState(() {
+        _shopBannerViewmodel = shopBannerViewmodel;
+      });
+    }, onError: (error) {
+      print("error");
+    });
+
+    _mockService.getHomeProducts().listen((pageInfo) {
+      setState(() {
+        products = pageInfo.listData;
+      });
+    }, onError: (error) {
+      print("error");
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
@@ -25,7 +52,7 @@ class _HomePageState extends State<HomePage> {
       ),
       body: CustomScrollView(
         slivers: <Widget>[
-          SliverToBoxAdapter(child: ShopHeader()),
+          SliverToBoxAdapter(child: ShopHeader(_shopBannerViewmodel)),
           SliverSafeArea(
             minimum: const EdgeInsets.all(10.0),
             sliver: SliverGrid.count(
@@ -40,51 +67,14 @@ class _HomePageState extends State<HomePage> {
       ),
     );
   }
-}
 
-List<Widget> getItems() {
-  List<Widget> list = new List();
-  list.add(GoodsCell(
-      score: 11,
-      name: "商品名称",
-      imgUrl:
-          "http://t00img.yangkeduo.com/goods/images/2018-10-18/1599c1d43a1a0fa2c9b3c442a08f9709.jpeg@750w_1l_50Q.src",
-      left: 22));
-  list.add(GoodsCell(
-      score: 11,
-      name: "商品名称",
-      imgUrl:
-          "http://t00img.yangkeduo.com/goods/images/2018-10-18/1599c1d43a1a0fa2c9b3c442a08f9709.jpeg@750w_1l_50Q.src",
-      left: 22));
-  list.add(GoodsCell(
-      score: 11,
-      name: "商品名称",
-      imgUrl:
-          "http://t00img.yangkeduo.com/goods/images/2018-10-18/1599c1d43a1a0fa2c9b3c442a08f9709.jpeg@750w_1l_50Q.src",
-      left: 22));
-  list.add(GoodsCell(
-      score: 11,
-      name: "商品名称",
-      imgUrl:
-          "http://t00img.yangkeduo.com/goods/images/2018-10-18/1599c1d43a1a0fa2c9b3c442a08f9709.jpeg@750w_1l_50Q.src",
-      left: 22));
-  list.add(GoodsCell(
-      score: 11,
-      name: "商品名称",
-      imgUrl:
-          "http://t00img.yangkeduo.com/goods/images/2018-10-18/1599c1d43a1a0fa2c9b3c442a08f9709.jpeg@750w_1l_50Q.src",
-      left: 22));
-  list.add(GoodsCell(
-      score: 11,
-      name: "商品名称",
-      imgUrl:
-          "http://t00img.yangkeduo.com/goods/images/2018-10-18/1599c1d43a1a0fa2c9b3c442a08f9709.jpeg@750w_1l_50Q.src",
-      left: 22));
-  list.add(GoodsCell(
-      score: 11,
-      name: "商品名称",
-      imgUrl:
-          "http://t00img.yangkeduo.com/goods/images/2018-10-18/1599c1d43a1a0fa2c9b3c442a08f9709.jpeg@750w_1l_50Q.src",
-      left: 22));
-  return list;
+  List<Widget> getItems() {
+    return (products ?? []).map((product) {
+      return GoodsCell(
+          score: product?.point,
+          name: product?.title,
+          imgUrl: product?.cover?.url,
+          left: product?.inStockQuantity);
+    }).toList();
+  }
 }
