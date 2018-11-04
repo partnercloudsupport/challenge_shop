@@ -18,7 +18,12 @@ class PageInfo extends Object {
   @JsonKey(name: 'listData')
   List<dynamic> listData;
 
-  PageInfo(this.totalNum,this.pageNo,this.pageSize,this.listData,);
+
+  @JsonKey(name: 'extras')
+  Map<String, dynamic> extras;
+
+
+  PageInfo(this.totalNum,this.pageNo,this.pageSize,this.listData,this.extras);
 
   factory PageInfo.fromJson(Map<String, dynamic> srcJson) => _$PageInfoFromJson(srcJson);
 

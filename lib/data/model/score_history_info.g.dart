@@ -25,3 +25,10 @@ Map<String, dynamic> _$ScoreHistoryInfoToJson(ScoreHistoryInfo instance) =>
       'productTitle': instance.productTitle,
       'challengeTitle': instance.challengeTitle
     };
+
+ScoreHistoryNotice _$ScoreHistoryNoticeFromJson(Map<String, dynamic> json) {
+  return ScoreHistoryNotice(json['point'] as int, json['date'] as String);
+}
+
+Map<String, dynamic> _$ScoreHistoryNoticeToJson(ScoreHistoryNotice instance) =>
+    <String, dynamic>{'point': instance.point, 'date': instance.date};

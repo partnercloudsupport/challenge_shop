@@ -15,6 +15,7 @@ class ScoreRecordPage extends StatefulWidget {
 class ScoreRecordPageState extends State<ScoreRecordPage> {
   MockService _mockService = MockService();
   List<ScoreHistoryInfo> scoreList;
+  ScoreHistoryNotice scoreHistoryNotice;
 
   @override
   void initState() {
@@ -23,6 +24,7 @@ class ScoreRecordPageState extends State<ScoreRecordPage> {
     _mockService.getScoreHistory().listen((pageInfo) {
       setState(() {
         scoreList = pageInfo.listData;
+        scoreHistoryNotice = ScoreHistoryNotice.fromJson(pageInfo.extras);
       });
     }, onError: (error) {
       print("error");
@@ -38,18 +40,31 @@ class ScoreRecordPageState extends State<ScoreRecordPage> {
             style: TextStyle(fontSize: 18, color: Colors.black),
           ),
         ),
-        body: Column(
-          children: <Widget>[
-            ScoreOverdueAlarm(),
-            Expanded(
-              child: ListView.builder(
-                itemCount: scoreList.length,
-                itemBuilder: (context, index) {
-                  return ScoreRecordCell(scoreList[index]);
-                },
-              ),
+        body: getBody());
+  }
+
+  Widget getBody() {
+    if (scoreHistoryNotice != null) {
+      return Column(
+        children: <Widget>[
+          ScoreOverdueAlarm(scoreHistoryNotice),
+          Expanded(
+            child: ListView.builder(
+              itemCount: scoreList?.length??0,
+              itemBuilder: (context, index) {
+                return ScoreRecordCell(scoreList[index]);
+              },
             ),
-          ],
-        ));
+          ),
+        ],
+      );
+    } else {
+      return ListView.builder(
+        itemCount: scoreList?.length??0,
+        itemBuilder: (context, index) {
+          return ScoreRecordCell(scoreList[index]);
+        },
+      );
+    }
   }
 }

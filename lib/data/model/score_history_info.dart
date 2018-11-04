@@ -32,4 +32,20 @@ class ScoreHistoryInfo extends Object {
 
 }
 
+@JsonSerializable()
+class ScoreHistoryNotice extends Object {
+
+  @JsonKey(name: 'point')
+  int point;
+
+  @JsonKey(name: 'date')
+  String date;
+
+  ScoreHistoryNotice(this.point,this.date,);
+
+  factory ScoreHistoryNotice.fromJson(Map<String, dynamic> srcJson) => _$ScoreHistoryNoticeFromJson(srcJson);
+
+  Map<String, dynamic> toJson() => _$ScoreHistoryNoticeToJson(this);
+
+}
 

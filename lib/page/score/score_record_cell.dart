@@ -1,4 +1,5 @@
 import 'package:challenge_shop/data/model/score_history_info.dart';
+import 'package:challenge_shop/util/TimeUtil.dart';
 import 'package:flutter/material.dart';
 
 class ScoreRecordCell extends StatelessWidget {
@@ -25,7 +26,7 @@ class ScoreRecordCell extends StatelessWidget {
             height: 15,
             child: Text(
               "${scoreHistoryInfo.direct}${scoreHistoryInfo.point}",
-              style: TextStyle(fontSize: 15, color: Color(0xff1c1c1c)),
+              style: TextStyle(fontSize: 15, color: getPointColor()),
             ),
             right: 15,
             top: 16,
@@ -34,7 +35,7 @@ class ScoreRecordCell extends StatelessWidget {
             height: 15,
             width: 190,
             child: Text(
-              "#${scoreHistoryInfo.challengeTitle}",
+              getSubTitle(),
               overflow: TextOverflow.ellipsis,
               maxLines: 1,
               style: TextStyle(fontSize: 12, color: Color(0xffaaaaaa)),
@@ -45,7 +46,8 @@ class ScoreRecordCell extends StatelessWidget {
           Positioned(
             height: 12,
             child: Text(
-              "10/05 07:48",
+              TimeUtil.getFormatTime(DateTime.fromMillisecondsSinceEpoch(
+                  scoreHistoryInfo.createTime * 1000)),
               style: TextStyle(fontSize: 12, color: Color(0xffaaaaaa)),
             ),
             bottom: 20,
@@ -63,5 +65,25 @@ class ScoreRecordCell extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  Color getPointColor() {
+    if (scoreHistoryInfo.direct == "+") {
+      return Color(0xff0CC975);
+    } else {
+      return Color(0xff1c1c1c);
+    }
+  }
+
+  String getSubTitle() {
+    if (scoreHistoryInfo.challengeTitle != null &&
+        scoreHistoryInfo.challengeTitle.isNotEmpty) {
+      return "#${scoreHistoryInfo.challengeTitle}";
+    } else if (scoreHistoryInfo.productTitle != null &&
+        scoreHistoryInfo.productTitle.isNotEmpty) {
+      return "兑换: ${scoreHistoryInfo.productTitle}";
+    } else {
+      return "";
+    }
   }
 }
