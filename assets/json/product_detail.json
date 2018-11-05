@@ -6,23 +6,23 @@
   "images": [
     {
       "fileType": "png",
-      "thumb": "http://i1.cdn.test.17173.com/gdthue/YWxqaGBf/snsapp/20181030/VHFVuibmBbqlEpa.png!a-6-240x240.jpg",
+      "thumb": "https://img.alicdn.com/imgextra/i4/14120949/TB2PTCdcAvoK1RjSZFDXXXY3pXa_!!0-saturn_solar.jpg_240x240.jpg",
       "height": 450,
       "width": 600,
-      "url": "http://i1.cdn.test.17173.com/gdthue/YWxqaGBf/snsapp/20181030/VHFVuibmBbqlEpa.png",
-      "original": "http://i1.cdn.test.17173.com/gdthue/YWxqaGBf/snsapp/20181030/VHFVuibmBbqlEpa.png"
+      "url": "https://gd2.alicdn.com/imgextra/i1/43828490/O1CN012CaT3zEhKKQrCkR_!!43828490.jpg_400x400.jpg",
+      "original": "https://gd2.alicdn.com/imgextra/i1/43828490/O1CN012CaT3zEhKKQrCkR_!!43828490.jpg_400x400.jpg"
     },
     {
       "fileType": "png",
-      "thumb": "http://i1.cdn.test.17173.com/gdthue/YWxqaGBf/snsapp/20181030/jYWdbKbmBbqmaoF.png!a-6-240x240.jpg",
+      "thumb": "https://gd2.alicdn.com/imgextra/i4/91913214/TB28B3sIYSYBuNjSspiXXXNzpXa_!!91913214.jpg",
       "height": 450,
       "width": 600,
-      "url": "http://i1.cdn.test.17173.com/gdthue/YWxqaGBf/snsapp/20181030/jYWdbKbmBbqmaoF.png",
-      "original": "http://i1.cdn.test.17173.com/gdthue/YWxqaGBf/snsapp/20181030/jYWdbKbmBbqmaoF.png"
+      "url": "https://gd2.alicdn.com/imgextra/i4/91913214/TB28B3sIYSYBuNjSspiXXXNzpXa_!!91913214.jpg",
+      "original": "https://gd2.alicdn.com/imgextra/i4/91913214/TB28B3sIYSYBuNjSspiXXXNzpXa_!!91913214.jpg"
     }
   ],
   "exchangeStatus": {
-    "canExchange": false,
+    "canExchange": true,
     "message": "未登录用户无法兑换",
     "type": "require-login"
   },

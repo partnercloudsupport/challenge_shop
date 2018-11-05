@@ -1,5 +1,5 @@
 import 'package:challenge_shop/data/model/score_history_info.dart';
-import 'package:challenge_shop/util/TimeUtil.dart';
+import 'package:challenge_shop/util/time_util.dart';
 import 'package:flutter/material.dart';
 
 class ScoreRecordCell extends StatelessWidget {

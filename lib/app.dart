@@ -24,7 +24,7 @@ class _ShopAppState extends State<ShopApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      color: Colors.white,
+      color: Color(0xffF5F5F5),
       routes: _routes,
       theme: new ThemeData(
 //        brightness: Brightness.dark,

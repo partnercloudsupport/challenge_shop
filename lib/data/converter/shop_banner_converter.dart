@@ -1,6 +1,6 @@
 import 'package:challenge_shop/data/model/my_score_info_model.dart';
 import 'package:challenge_shop/data/viewModel/shop_banner_viewmodel.dart';
-import 'package:challenge_shop/util/TimeUtil.dart';
+import 'package:challenge_shop/util/time_util.dart';
 
 class ShopBannerConverter {
   static ShopBannerViewmodel conver(MyScoreInfoModel myScoreInfoModel) {

@@ -1,22 +1,20 @@
-import 'package:challenge_shop/page/reward_history/reward_dialog.dart';
+import 'package:challenge_shop/data/model/exchange_order.dart';
+import 'package:challenge_shop/eventbus/event_bus.dart';
+import 'package:challenge_shop/util/time_util.dart';
+import 'package:event_bus/event_bus.dart';
 import 'package:flutter/material.dart';
 
 class RewardRecordCell extends StatelessWidget {
-  RewardDialog dialog=RewardDialog();
+  ExchangeOrder order;
+
+  RewardRecordCell(this.order);
+
+
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        showDialog(
-          context: context,
-          builder: (context) {
-            return StatefulBuilder(
-              builder: (context, state) {
-                return dialog;
-              },
-            );
-          },
-        );
+        eventBus.fire(ProductOrderClickEvent(order.id));
       },
       child: Column(
         children: <Widget>[
@@ -31,17 +29,17 @@ class RewardRecordCell extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 Text(
-                  "2018-10-12 15:02:23",
+                  "${TimeUtil.getFormatTime1(DateTime.fromMillisecondsSinceEpoch(order?.createTime * 1000))}",
                   style: TextStyle(
                     fontSize: 12,
                     color: Color(0xffaaaaaa),
                   ),
                 ),
                 Text(
-                  "待发货",
+                  "${order.statusLabel ?? ""}",
                   style: TextStyle(
                     fontSize: 12,
-                    color: Colors.black,
+                    color: getStatusColor(),
                   ),
                 ),
               ],
@@ -54,7 +52,7 @@ class RewardRecordCell extends StatelessWidget {
                 Container(
                   margin: EdgeInsets.only(left: 20, right: 20),
                   child: Image.network(
-                    "https://img.alicdn.com/imgextra/i4/14120949/TB2PTCdcAvoK1RjSZFDXXXY3pXa_!!0-saturn_solar.jpg_240x240.jpg",
+                    "${order?.product?.cover.url ?? ""}",
                     width: 70,
                     height: 70,
                     fit: BoxFit.cover,
@@ -66,7 +64,7 @@ class RewardRecordCell extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Text(
-                        "商品名称商",
+                        "${order?.product?.title ?? ""}",
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(
@@ -80,7 +78,7 @@ class RewardRecordCell extends StatelessWidget {
                           TextSpan(
                             children: <TextSpan>[
                               TextSpan(
-                                  text: "1000",
+                                  text: "${order?.product?.point ?? 0}",
                                   style: TextStyle(
                                     fontWeight: FontWeight.bold,
                                     color: Color(0xff0CC975),
@@ -112,5 +110,13 @@ class RewardRecordCell extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  Color getStatusColor() {
+    if (order.statusLabel == "待发货") {
+      return Color(0xffE98943);
+    } else {
+      return Colors.black;
+    }
   }
 }

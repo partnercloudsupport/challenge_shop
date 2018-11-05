@@ -1,3 +1,5 @@
+import 'package:challenge_shop/data/mock_service.dart';
+import 'package:challenge_shop/data/model/product_detail.dart';
 import 'package:challenge_shop/page/success/success_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
@@ -12,6 +14,21 @@ class GoodsDetailPage extends StatefulWidget {
 }
 
 class GoodsDetailPageState extends State<GoodsDetailPage> {
+  ProductDetail _productDetail;
+  MockService _mockService = MockService();
+
+  @override
+  void initState() {
+    super.initState();
+    _mockService.getProductDetail().listen((it) {
+      setState(() {
+        _productDetail = it;
+      });
+    }, onError: (error) {
+      print("error");
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,27 +40,7 @@ class GoodsDetailPageState extends State<GoodsDetailPage> {
           style: TextStyle(fontSize: 18, color: Colors.black),
         ),
       ),
-      bottomNavigationBar: GestureDetector(
-        child: Container(
-          height: 49,
-          width: double.infinity,
-          color: Color(0xff0cc975),
-          child: Center(
-            child: Text(
-              "确认兑换",
-              style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 17,
-                  fontWeight: FontWeight.bold),
-            ),
-          ),
-        ),
-        onTap: (){
-
-          Navigator.of(context)
-              .pushNamed(SuccessPage.routePath);
-        },
-      ),
+      bottomNavigationBar:getButton(),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -53,11 +50,11 @@ class GoodsDetailPageState extends State<GoodsDetailPage> {
               child: Swiper(
                 itemBuilder: (BuildContext context, int index) {
                   return new Image.network(
-                    "https://gd2.alicdn.com/imgextra/i1/43828490/O1CN012CaT3zEhKKQrCkR_!!43828490.jpg_400x400.jpg",
+                    _productDetail.images[index].url,
                     fit: BoxFit.cover,
                   );
                 },
-                itemCount: 3,
+                itemCount: _productDetail?.images?.length ?? 0,
                 pagination: new SwiperPagination(
                     builder: DotSwiperPaginationBuilder(
                         color: Color(0xfff5f5f5),
@@ -66,9 +63,10 @@ class GoodsDetailPageState extends State<GoodsDetailPage> {
             ),
             Container(
               color: Colors.white,
+              width: double.maxFinite,
               padding: EdgeInsets.fromLTRB(16, 6, 16, 0),
               child: Text(
-                "HEROCROSS 蝙超 Q版超合金超人公仔 高14cm可发光可动",
+                "${_productDetail.title}",
                 style: TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.normal,
@@ -86,7 +84,7 @@ class GoodsDetailPageState extends State<GoodsDetailPage> {
                     TextSpan(
                       children: <TextSpan>[
                         TextSpan(
-                            text: "1000",
+                            text: "${_productDetail.point}",
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
                               color: Color(0xff0CC975),
@@ -102,7 +100,7 @@ class GoodsDetailPageState extends State<GoodsDetailPage> {
                     ),
                   ),
                   Text(
-                    "剩余335件",
+                    "剩余${_productDetail.inStockQuantity}件",
                     style: TextStyle(
                       color: Color(0xffaaaaaa),
                       fontSize: 12,
@@ -123,6 +121,7 @@ class GoodsDetailPageState extends State<GoodsDetailPage> {
               color: Colors.white,
               child: TextField(
                 style: TextStyle(fontSize: 15, color: Colors.black),
+                enabled: _productDetail?.exchangeStatus?.canExchange ?? false,
                 decoration: InputDecoration.collapsed(
                   hintText: '收货人',
                   hintStyle: TextStyle(
@@ -140,6 +139,7 @@ class GoodsDetailPageState extends State<GoodsDetailPage> {
               color: Colors.white,
               child: TextField(
                 style: TextStyle(fontSize: 15, color: Colors.black),
+                enabled: _productDetail?.exchangeStatus?.canExchange ?? false,
                 decoration: InputDecoration.collapsed(
                   hintText: '手机号',
                   hintStyle: TextStyle(
@@ -180,6 +180,7 @@ class GoodsDetailPageState extends State<GoodsDetailPage> {
               color: Colors.white,
               child: TextField(
                 style: TextStyle(fontSize: 15, color: Colors.black),
+                enabled: _productDetail?.exchangeStatus?.canExchange ?? false,
                 decoration: InputDecoration.collapsed(
                   hintText: '详细地址:如街道,小区,门号等',
                   hintStyle: TextStyle(
@@ -206,5 +207,44 @@ class GoodsDetailPageState extends State<GoodsDetailPage> {
         ),
       ),
     );
+  }
+
+  Widget getButton() {
+    if (_productDetail?.exchangeStatus?.canExchange ?? false) {
+      return GestureDetector(
+        child: Container(
+          height: 49,
+          width: double.infinity,
+          color: Color(0xff0cc975),
+          child: Center(
+            child: Text(
+              "确认兑换",
+              style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 17,
+                  fontWeight: FontWeight.bold),
+            ),
+          ),
+        ),
+        onTap: () {
+          if (_productDetail?.exchangeStatus?.canExchange ?? false) {
+            Navigator.of(context).pushNamed(SuccessPage.routePath);
+          }
+        },
+      );
+    } else {
+      return Container(
+        height: 49,
+        width: double.infinity,
+        color: Color(0xffaaaaaa),
+        child: Center(
+          child: Text(
+            _productDetail.exchangeStatus.message ?? "积分不足",
+            style: TextStyle(
+                color: Colors.white, fontSize: 17, fontWeight: FontWeight.bold),
+          ),
+        ),
+      );
+    }
   }
 }
