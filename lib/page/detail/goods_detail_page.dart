@@ -40,33 +40,18 @@ class GoodsDetailPageState extends State<GoodsDetailPage> {
           style: TextStyle(fontSize: 18, color: Colors.black),
         ),
       ),
-      bottomNavigationBar:getButton(),
+      bottomNavigationBar: getButton(),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Container(
-              height: 230,
-              child: Swiper(
-                itemBuilder: (BuildContext context, int index) {
-                  return new Image.network(
-                    _productDetail.images[index].url,
-                    fit: BoxFit.cover,
-                  );
-                },
-                itemCount: _productDetail?.images?.length ?? 0,
-                pagination: new SwiperPagination(
-                    builder: DotSwiperPaginationBuilder(
-                        color: Color(0xfff5f5f5),
-                        activeColor: Color(0xff0CC975))),
-              ),
-            ),
+            getBanner(),
             Container(
               color: Colors.white,
               width: double.maxFinite,
               padding: EdgeInsets.fromLTRB(16, 6, 16, 0),
               child: Text(
-                "${_productDetail.title}",
+                "${_productDetail?.title}",
                 style: TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.normal,
@@ -84,7 +69,7 @@ class GoodsDetailPageState extends State<GoodsDetailPage> {
                     TextSpan(
                       children: <TextSpan>[
                         TextSpan(
-                            text: "${_productDetail.point}",
+                            text: "${_productDetail?.point}",
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
                               color: Color(0xff0CC975),
@@ -100,7 +85,7 @@ class GoodsDetailPageState extends State<GoodsDetailPage> {
                     ),
                   ),
                   Text(
-                    "剩余${_productDetail.inStockQuantity}件",
+                    "剩余${_productDetail?.inStockQuantity}件",
                     style: TextStyle(
                       color: Color(0xffaaaaaa),
                       fontSize: 12,
@@ -228,7 +213,7 @@ class GoodsDetailPageState extends State<GoodsDetailPage> {
         ),
         onTap: () {
           if (_productDetail?.exchangeStatus?.canExchange ?? false) {
-            Navigator.of(context).pushNamed(SuccessPage.routePath);
+            Navigator.popAndPushNamed(context, SuccessPage.routePath);
           }
         },
       );
@@ -239,10 +224,32 @@ class GoodsDetailPageState extends State<GoodsDetailPage> {
         color: Color(0xffaaaaaa),
         child: Center(
           child: Text(
-            _productDetail.exchangeStatus.message ?? "积分不足",
+            _productDetail?.exchangeStatus?.message ?? "积分不足",
             style: TextStyle(
                 color: Colors.white, fontSize: 17, fontWeight: FontWeight.bold),
           ),
+        ),
+      );
+    }
+  }
+
+  Widget getBanner() {
+    if ((_productDetail?.images?.length ?? 0) == 0) {
+      return Container(height: 230);
+    } else {
+      return Container(
+        height: 230,
+        child: Swiper(
+          itemBuilder: (BuildContext context, int index) {
+            return new Image.network(
+              "${_productDetail.images[index].url}",
+              fit: BoxFit.cover,
+            );
+          },
+          itemCount: _productDetail.images.length,
+          pagination: new SwiperPagination(
+              builder: DotSwiperPaginationBuilder(
+                  color: Color(0xfff5f5f5), activeColor: Color(0xff0CC975))),
         ),
       );
     }

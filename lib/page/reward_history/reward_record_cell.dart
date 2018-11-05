@@ -47,6 +47,7 @@ class RewardRecordCell extends StatelessWidget {
           ),
           Container(
             height: 104,
+            color: Colors.white,
             child: Row(
               children: <Widget>[
                 Container(

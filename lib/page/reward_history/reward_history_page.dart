@@ -56,6 +56,7 @@ class RewardHistoryPageState extends State<RewardHistoryPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xfff5f5f5),
       appBar: AppBar(
         title: Text(
           "兑换记录",

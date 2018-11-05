@@ -71,7 +71,7 @@ class SuccessPage extends StatelessWidget {
                 border: Border.all(color: Color(0xff0CC975), width: 1),
                 borderRadius: BorderRadius.circular(21)),
             child: MaterialButton(
-              onPressed: null,
+              onPressed: ()=>Navigator.pop(context),
               splashColor: Colors.transparent,
               child: const Text(
                 '返回商城',

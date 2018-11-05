@@ -1,6 +1,8 @@
 import 'package:challenge_shop/data/model/exchange_order.dart';
+import 'package:challenge_shop/util/common_tool.dart';
 import 'package:challenge_shop/util/time_util.dart';
 import 'package:flutter/material.dart';
+import 'package:oktoast/oktoast.dart';
 
 class RewardDialog extends StatelessWidget {
   ExchangeOrder _exchangeOrder;
@@ -203,7 +205,11 @@ class RewardDialog extends StatelessWidget {
             ),
           ),
           GestureDetector(
-            onTap: () {},
+            onTap: () {
+              showToast("${delivery.label}已经复制到剪贴板",
+                  position: ToastPosition.bottom);
+              CommonTool.copyToClipboard("${delivery.value}");
+            },
             child: Container(
               margin: EdgeInsets.only(top: 16, left: 5),
               padding: EdgeInsets.fromLTRB(5, 0, 5, 0),

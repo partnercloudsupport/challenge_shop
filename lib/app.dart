@@ -4,6 +4,7 @@ import 'package:challenge_shop/page/reward_history/reward_history_page.dart';
 import 'package:challenge_shop/page/score/score_record_page.dart';
 import 'package:challenge_shop/page/success/success_page.dart';
 import 'package:flutter/material.dart';
+import 'package:oktoast/oktoast.dart';
 
 class ShopApp extends StatefulWidget {
   @override
@@ -23,15 +24,16 @@ class _ShopAppState extends State<ShopApp> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      color: Color(0xffF5F5F5),
+    return OKToast(
+        child: MaterialApp(
+      color: Colors.white,
       routes: _routes,
       theme: new ThemeData(
 //        brightness: Brightness.dark,
-        primaryColor: Colors.white,
-      ),
+          primaryColor: Colors.white,
+          backgroundColor: Color(0xfff5f5f5)),
       debugShowCheckedModeBanner: false,
       home: _homePage,
-    );
+    ));
   }
 }
