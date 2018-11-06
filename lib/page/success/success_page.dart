@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 class SuccessPage extends StatelessWidget {
 
-  static const String routePath="/shop/successPage";
   @override
   Widget build(BuildContext context) {
     return Scaffold(

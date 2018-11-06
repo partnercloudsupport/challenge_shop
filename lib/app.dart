@@ -14,20 +14,12 @@ class ShopApp extends StatefulWidget {
 class _ShopAppState extends State<ShopApp> {
   HomePage _homePage = new HomePage();
 
-  Map<String, WidgetBuilder> _routes = {
-    HomePage.routePath: (_) => new HomePage(),
-    GoodsDetailPage.routePath: (_) => new GoodsDetailPage(),
-    RewardHistoryPage.routePath: (_) => new RewardHistoryPage(),
-    ScoreRecordPage.routePath: (_) => new ScoreRecordPage(),
-    SuccessPage.routePath: (_) => new SuccessPage(),
-  };
 
   @override
   Widget build(BuildContext context) {
     return OKToast(
         child: MaterialApp(
       color: Colors.white,
-      routes: _routes,
       theme: new ThemeData(
 //        brightness: Brightness.dark,
           primaryColor: Colors.white,

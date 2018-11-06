@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class StateCover extends StatefulWidget {
   Widget child;
@@ -29,6 +30,10 @@ class StateCoverController {
 
   showLoading() {
     status.value = StateCoverStatus.loading;
+  }
+
+  showLoadTransparent() {
+    status.value = StateCoverStatus.loadTransparent;
   }
 }
 
@@ -68,6 +73,10 @@ class StateCoverState extends State<StateCover> {
         {
           return getEmptyCover();
         }
+      case StateCoverStatus.loadTransparent:
+        {
+          return getLoadTransparent();
+        }
     }
 
     return Container(child: getLoadCover());
@@ -79,13 +88,27 @@ class StateCoverState extends State<StateCover> {
       child: Column(children: [
         Expanded(
           child: Center(
-            child: CircularProgressIndicator(),
+            child: SpinKitCircle(color: Color(0xff0CC975)),
           ),
         ),
         Expanded(
           child: Container(),
         )
       ]),
+    );
+  }
+
+  Widget getLoadTransparent() {
+    return Stack(
+      children: <Widget>[
+        widget.child,
+        Container(
+          color: Colors.black54,
+          child: Center(
+            child: SpinKitCircle(color: Color(0xff0CC975)),
+          ),
+        ),
+      ],
     );
   }
 
@@ -180,4 +203,6 @@ class StateCoverStatus {
   static const int loading = 1;
   static const int loadFail = 2;
   static const int empty = 3;
+
+  static const int loadTransparent = 4;
 }

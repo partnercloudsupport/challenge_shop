@@ -73,7 +73,9 @@ class ShopBanner extends StatelessWidget {
                   InkWell(
                     onTap: () {
                       Navigator.of(context)
-                          .pushNamed(ScoreRecordPage.routePath);
+                          .push(MaterialPageRoute(builder: (_) {
+                        return ScoreRecordPage();
+                      }));
                     },
                     child: Container(
                       margin: EdgeInsets.only(top: 5),
@@ -95,7 +97,9 @@ class ShopBanner extends StatelessWidget {
                   GestureDetector(
                     onTap: () {
                       Navigator.of(context)
-                          .pushNamed(RewardHistoryPage.routePath);
+                          .push(MaterialPageRoute(builder: (_) {
+                        return RewardHistoryPage();
+                      }));
                     },
                     child: Container(
                       margin: EdgeInsets.only(top: 5, left: 10),

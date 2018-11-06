@@ -1,12 +1,14 @@
 import 'package:challenge_shop/common/state_cover.dart';
-import 'package:challenge_shop/data/mock_service.dart';
 import 'package:challenge_shop/data/model/product_detail.dart';
+import 'package:challenge_shop/data/remote_service.dart';
 import 'package:challenge_shop/page/success/success_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 
 class GoodsDetailPage extends StatefulWidget {
-  static const String routePath = "/shop/goodsDetailPage";
+  int _productId;
+
+  GoodsDetailPage(this._productId);
 
   @override
   State<StatefulWidget> createState() {
@@ -16,7 +18,7 @@ class GoodsDetailPage extends StatefulWidget {
 
 class GoodsDetailPageState extends State<GoodsDetailPage> {
   ProductDetail _productDetail;
-  MockService _mockService = MockService();
+  RemoteService _dataService = RemoteService();
   StateCoverController _stateCoverController;
 
   @override
@@ -33,7 +35,7 @@ class GoodsDetailPageState extends State<GoodsDetailPage> {
   }
 
   getData() {
-    _mockService.getProductDetail().listen((it) {
+    _dataService.getProductDetail(widget._productId).listen((it) {
       setState(() {
         _productDetail = it;
         _stateCoverController.status.value = StateCoverStatus.content;
@@ -236,7 +238,10 @@ class GoodsDetailPageState extends State<GoodsDetailPage> {
         ),
         onTap: () {
           if (_productDetail?.exchangeStatus?.canExchange ?? false) {
-            Navigator.popAndPushNamed(context, SuccessPage.routePath);
+            Navigator.of(context)
+                .pushReplacement(MaterialPageRoute(builder: (_) {
+              return SuccessPage();
+            }));
           }
         },
       );

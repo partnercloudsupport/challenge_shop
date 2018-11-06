@@ -6,14 +6,18 @@ class GoodsCell extends StatelessWidget {
   final String name;
   final int score;
   final int left;
+  final int productId;
 
-  const GoodsCell({this.score, this.name, this.imgUrl, this.left});
+  const GoodsCell(
+      {this.productId, this.score, this.name, this.imgUrl, this.left});
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
         onTap: () {
-          Navigator.of(context).pushNamed(GoodsDetailPage.routePath);
+          Navigator.of(context).push(MaterialPageRoute(builder: (_) {
+            return GoodsDetailPage(productId);
+          }));
         },
         child: Card(
           elevation: 1.5,

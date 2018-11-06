@@ -11,19 +11,19 @@ import 'goods_cell.dart';
 import 'shop_header.dart';
 
 class HomePage extends StatefulWidget {
-  static const String routePath = "/shop/homePage";
-
   @override
   State<StatefulWidget> createState() => new _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
   ShopBannerViewmodel _shopBannerViewmodel;
-  List<Product> _products;
+  List<Product> _datalist;
   PagingInfo _pagingInfo = PagingInfo(1);
   RemoteService _dataService = RemoteService();
   RefreshController _refreshController;
   StateCoverController _stateCoverController;
+
+  bool isFinish = true;
 
   @override
   void initState() {
@@ -53,7 +53,7 @@ class _HomePageState extends State<HomePage> {
         controller: _stateCoverController,
         child: SmartRefresher(
           enablePullDown: true,
-          enablePullUp: true,
+          enablePullUp: !isFinish,
           onRefresh: _onRefresh,
           controller: _refreshController,
           child: CustomScrollView(
@@ -67,12 +67,12 @@ class _HomePageState extends State<HomePage> {
                   mainAxisSpacing: 4.0,
                   childAspectRatio: 0.73,
                   crossAxisSpacing: 4.0,
-                  children: List.generate(_products?.length ?? 0, (index) {
+                  children: List.generate(_datalist?.length ?? 0, (index) {
                     return GoodsCell(
-                        score: _products[index]?.point,
-                        name: _products[index]?.title,
-                        imgUrl: _products[index]?.cover?.url,
-                        left: _products[index]?.inStockQuantity);
+                        score: _datalist[index]?.point,
+                        name: _datalist[index]?.title,
+                        imgUrl: _datalist[index]?.cover?.url,
+                        left: _datalist[index]?.inStockQuantity);
                   }),
                 ),
               ),
@@ -97,29 +97,32 @@ class _HomePageState extends State<HomePage> {
       if (_pagingInfo.isFirstPage()) {
         setState(() {
           _shopBannerViewmodel = homePageViewmodel.shopBannerViewmodel;
-          _products = homePageViewmodel.pageInfo.listData;
+          _datalist = homePageViewmodel.pageInfo.listData;
         });
       } else {
         setState(() {
           homePageViewmodel.pageInfo.listData
-              .forEach((product) => _products.add(product));
+              .forEach((product) => _datalist.add(product));
         });
       }
       loadDataSuccess(
-          _products.length ?? 0, homePageViewmodel.pageInfo.totalNum);
+          _datalist.length ?? 0, homePageViewmodel.pageInfo.totalNum);
     }, onError: (error) {
-      showToast("${error.toString()}", position: ToastPosition.bottom);
+      loadDataFail(error);
     });
   }
 
   loadDataSuccess(int currentCount, int total) {
+    setState(() {
+      isFinish = currentCount >= total;
+    });
     if (currentCount > 0) {
       _stateCoverController.showContent();
     } else {
       _stateCoverController.showEmpty();
     }
     _refreshController.sendBack(true, RefreshStatus.completed);
-    if (total <= _products.length) {
+    if (total <= _datalist.length) {
       _refreshController.sendBack(false, RefreshStatus.noMore);
     } else {
       _refreshController.sendBack(false, RefreshStatus.idle);
