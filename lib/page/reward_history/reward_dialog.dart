@@ -1,5 +1,5 @@
 import 'package:challenge_shop/data/model/exchange_order.dart';
-import 'package:challenge_shop/util/common_tool.dart';
+import 'package:challenge_shop/common/common_tool.dart';
 import 'package:challenge_shop/util/time_util.dart';
 import 'package:flutter/material.dart';
 import 'package:oktoast/oktoast.dart';

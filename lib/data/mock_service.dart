@@ -18,8 +18,13 @@ class MockService {
   }
 
   Observable<Object> rxLoadJson(String fileName) {
-    return Observable<Object>.fromFuture(loadJson(fileName))
-        .map((jsonStr) => json.decode(jsonStr));
+    return Observable.timer(Object, Duration(seconds: 2)).flatMap((_) {
+      return Observable<Object>.fromFuture(loadJson(fileName));
+    }).map((jsonStr) => json.decode(jsonStr));
+
+
+//    Observable<Object>.fromFuture(loadJson(fileName))
+//        .map((jsonStr) => json.decode(jsonStr));
   }
 
   Observable<ShopBannerViewmodel> getHomeBannerModel() {
@@ -56,5 +61,4 @@ class MockService {
   Observable<ProductDetail> getProductDetail() {
     return rxLoadJson("product_detail").map((it) => ProductDetail.fromJson(it));
   }
-
 }
