@@ -38,6 +38,10 @@ class _HomePageState extends State<HomePage> {
     super.initState();
     _onRefresh(true);
   }
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+  }
 
   @override
   Widget build(BuildContext context) {

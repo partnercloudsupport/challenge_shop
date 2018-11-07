@@ -1,8 +1,11 @@
 import 'package:challenge_shop/common/state_cover.dart';
+import 'package:challenge_shop/data/model/district.dart';
 import 'package:challenge_shop/data/model/product_detail.dart';
 import 'package:challenge_shop/data/remote_service.dart';
+import 'package:challenge_shop/data/viewModel/product_detail_viewmodel.dart';
 import 'package:challenge_shop/page/success/success_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_picker/flutter_picker.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 
 class GoodsDetailPage extends StatefulWidget {
@@ -18,8 +21,12 @@ class GoodsDetailPage extends StatefulWidget {
 
 class GoodsDetailPageState extends State<GoodsDetailPage> {
   ProductDetail _productDetail;
+  List<District> _districts;
+  List<PickerItem> _pickItems;
   RemoteService _dataService = RemoteService();
   StateCoverController _stateCoverController;
+
+  String _districtStr = "配送地址";
 
   @override
   void initState() {
@@ -35,9 +42,35 @@ class GoodsDetailPageState extends State<GoodsDetailPage> {
   }
 
   getData() {
-    _dataService.getProductDetail(widget._productId).listen((it) {
+    _dataService
+        .getProductDetail(widget._productId)
+        .zipWith(_dataService.getDistricts(), (productDetail, districtList) {
+      ProductDetailViewmodel viewmodel = ProductDetailViewmodel();
+      viewmodel.productDetail = productDetail;
+      viewmodel.districts = districtList;
+      return viewmodel;
+    }).listen((it) {
       setState(() {
-        _productDetail = it;
+        _productDetail = it.productDetail;
+        _districts = it.districts;
+        _pickItems = [];
+        _districts.forEach((district0) {
+          PickerItem pi0 = PickerItem(
+              text: Text(district0.name), value: district0, children: []);
+          district0.children.forEach((district1) {
+            PickerItem pi1 = PickerItem(
+                text: Text(district1.name), value: district1, children: []);
+            pi0.children.add(pi1);
+
+            district1.children.forEach((district2) {
+              PickerItem pi2 = PickerItem(
+                  text: Text(district2.name), value: district2, children: []);
+              pi1.children.add(pi2);
+            });
+          });
+          _pickItems.add(pi0);
+        });
+
         _stateCoverController.status.value = StateCoverStatus.content;
       });
     }, onError: (error) {
@@ -160,17 +193,36 @@ class GoodsDetailPageState extends State<GoodsDetailPage> {
                   ),
                   padding: EdgeInsets.all(15),
                   color: Colors.white,
+                  child: TextField(
+                    style: TextStyle(fontSize: 15, color: Colors.black),
+                    enabled:
+                        _productDetail?.exchangeStatus?.canExchange ?? false,
+                    decoration: InputDecoration.collapsed(
+                      hintText: '邮编',
+                      hintStyle: TextStyle(
+                        fontSize: 15,
+                        color: Color(0xffaaaaaa),
+                      ),
+                    ),
+                  ),
+                ),
+                Container(
+                  margin: EdgeInsets.only(
+                    top: 1,
+                  ),
+                  padding: EdgeInsets.all(15),
+                  color: Colors.white,
                   child: InkWell(
+                    onTap: () {
+                      if (_productDetail?.exchangeStatus?.canExchange ??
+                          false) {
+                        showPicker(context);
+                      }
+                    },
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
-                        Text(
-                          "配送地址",
-                          style: TextStyle(
-                            color: Color(0xffaaaaaa),
-                            fontSize: 15,
-                          ),
-                        ),
+                        getDistrictText(),
                         Icon(
                           Icons.navigate_next,
                           color: Color(0xffaaaaaa),
@@ -208,11 +260,19 @@ class GoodsDetailPageState extends State<GoodsDetailPage> {
                       ),
                     ),
                   ),
-                )
+                ),
+                Column(
+                  children: getOtherFields(),
+                ),
               ],
             ),
           ),
         ));
+  }
+
+  List<Widget> getOtherFields() {
+    List<Widget> list=List();
+    return list;
   }
 
   Widget getButton() {
@@ -278,6 +338,50 @@ class GoodsDetailPageState extends State<GoodsDetailPage> {
           pagination: new SwiperPagination(
               builder: DotSwiperPaginationBuilder(
                   color: Color(0xfff5f5f5), activeColor: Color(0xff0CC975))),
+        ),
+      );
+    }
+  }
+
+  showPicker(BuildContext context) {
+    Picker picker = new Picker(
+        adapter: PickerDataAdapter(data: _pickItems),
+        changeToFirst: true,
+        hideHeader: true,
+        textAlign: TextAlign.left,
+        columnPadding: const EdgeInsets.all(8.0),
+        onConfirm: (Picker picker, List value) {
+          String districtStr = picker.getSelectedValues().map((district) {
+            return (district as District).name;
+          }).join(" ");
+          setState(() {
+            _districtStr = districtStr;
+          });
+
+//          print(picker.getSelectedValues().map((district) {
+//            return (district as District).id;
+//          }));
+//          print(value.toString());
+//          print(picker.getSelectedValues());
+        });
+    picker.showDialog(context);
+  }
+
+  Text getDistrictText() {
+    if (_districtStr == "配送地址") {
+      return Text(
+        "配送地址",
+        style: TextStyle(
+          color: Color(0xffaaaaaa),
+          fontSize: 15,
+        ),
+      );
+    } else {
+      return Text(
+        "${_districtStr}",
+        style: TextStyle(
+          color: Colors.black,
+          fontSize: 15,
         ),
       );
     }

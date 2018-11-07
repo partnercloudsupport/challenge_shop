@@ -1,4 +1,5 @@
 import 'package:challenge_shop/data/mock_service.dart';
+import 'package:challenge_shop/data/model/district.dart';
 import 'package:challenge_shop/data/model/exchange_order.dart';
 import 'package:challenge_shop/data/model/page_info.dart';
 import 'package:challenge_shop/data/model/product_detail.dart';
@@ -50,5 +51,9 @@ class RemoteService {
 
   Observable<ExchangeOrder> getOrderDetail(orderId) {
     return _mockService.getOrderDetail();
+  }
+
+  Observable<List<District>> getDistricts(){
+    return _mockService.getDistricts();
   }
 }

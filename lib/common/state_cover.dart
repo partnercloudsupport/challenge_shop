@@ -28,13 +28,6 @@ class StateCoverController {
     status.value = StateCoverStatus.empty;
   }
 
-  showLoading() {
-    status.value = StateCoverStatus.loading;
-  }
-
-  showLoadTransparent() {
-    status.value = StateCoverStatus.loadTransparent;
-  }
 }
 
 class StateCoverState extends State<StateCover> {
@@ -72,10 +65,6 @@ class StateCoverState extends State<StateCover> {
       case StateCoverStatus.empty:
         {
           return getEmptyCover();
-        }
-      case StateCoverStatus.loadTransparent:
-        {
-          return getLoadTransparent();
         }
     }
 
@@ -156,37 +145,45 @@ class StateCoverState extends State<StateCover> {
   }
 
   Widget getFailCover() {
-    return Container(
-      color: Color(0xfff5f5f5),
-      child: Column(
-        children: <Widget>[
-          Expanded(
-            child: Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Center(
-                    child: Image.asset(
-                      "assets/imgs/3.0x/ic_cover.png",
-                      width: 80,
-                      height: 71,
+    return GestureDetector(
+      onTap: () {
+        setState(() {
+          controller.status.value = StateCoverStatus.reload;
+        });
+      },
+      child: Container(
+        color: Color(0xfff5f5f5),
+        child: Column(
+          children: <Widget>[
+            Expanded(
+              child: Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Center(
+                      child: Image.asset(
+                        "assets/imgs/3.0x/ic_cover.png",
+                        width: 80,
+                        height: 71,
+                      ),
                     ),
-                  ),
-                  Container(
-                    margin: EdgeInsets.only(top: 20),
-                    child: Text(
-                      "加载失败",
-                      style: TextStyle(color: Color(0xffaaaaaa), fontSize: 15),
-                    ),
-                  )
-                ],
+                    Container(
+                      margin: EdgeInsets.only(top: 20),
+                      child: Text(
+                        "加载失败",
+                        style:
+                            TextStyle(color: Color(0xffaaaaaa), fontSize: 15),
+                      ),
+                    )
+                  ],
+                ),
               ),
             ),
-          ),
-          Expanded(
-            child: Container(),
-          )
-        ],
+            Expanded(
+              child: Container(),
+            )
+          ],
+        ),
       ),
     );
   }
@@ -204,5 +201,4 @@ class StateCoverStatus {
   static const int loadFail = 2;
   static const int empty = 3;
 
-  static const int loadTransparent = 4;
 }

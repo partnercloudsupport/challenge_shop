@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:challenge_shop/common/loading_dialog.dart';
 import 'package:challenge_shop/common/state_cover.dart';
 import 'package:challenge_shop/data/model/exchange_order.dart';
 import 'package:challenge_shop/data/model/paging_info.dart';
@@ -47,22 +48,29 @@ class RewardHistoryPageState extends State<RewardHistoryPage> {
   }
 
   void showDetailDialog(int orderId) {
-    _stateCoverController.showLoadTransparent();
+    showDialog<Null>(
+        context: context, //BuildContext对象
+        barrierDismissible: false,
+        builder: (BuildContext context) {
+          return LoadingDialog();
+        });
+
     _dataService.getOrderDetail(orderId).listen((order) {
-      _stateCoverController.showContent();
-      setState(() {
-        showDialog(
-          context: context,
-          builder: (context) {
-            return StatefulBuilder(
-              builder: (context, state) {
-                return RewardDialog(order);
-              },
-            );
-          },
-        );
-      });
-    }, onError: (error) {});
+      Navigator.pop(context);
+      showDialog(
+        context: context,
+        builder: (context) {
+          return StatefulBuilder(
+            builder: (context, state) {
+              return RewardDialog(order);
+            },
+          );
+        },
+      );
+    }, onError: (error) {
+      Navigator.pop(context);
+      showToast("${error.toString()}", position: ToastPosition.bottom);
+    });
   }
 
   @override

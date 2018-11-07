@@ -2,6 +2,7 @@ import 'dart:async' show Future;
 import 'dart:convert';
 
 import 'package:challenge_shop/data/converter/shop_banner_converter.dart';
+import 'package:challenge_shop/data/model/district.dart';
 import 'package:challenge_shop/data/model/exchange_order.dart';
 import 'package:challenge_shop/data/model/my_score_info_model.dart';
 import 'package:challenge_shop/data/model/page_info.dart';
@@ -21,7 +22,6 @@ class MockService {
     return Observable.timer(Object, Duration(seconds: 2)).flatMap((_) {
       return Observable<Object>.fromFuture(loadJson(fileName));
     }).map((jsonStr) => json.decode(jsonStr));
-
 
 //    Observable<Object>.fromFuture(loadJson(fileName))
 //        .map((jsonStr) => json.decode(jsonStr));
@@ -60,5 +60,9 @@ class MockService {
 
   Observable<ProductDetail> getProductDetail() {
     return rxLoadJson("product_detail").map((it) => ProductDetail.fromJson(it));
+  }
+
+  Observable<List<District>> getDistricts() {
+    return rxLoadJson("district").map((it) => District.getDistrictList(it));
   }
 }
