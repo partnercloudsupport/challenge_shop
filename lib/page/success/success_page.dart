@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 
 class SuccessPage extends StatelessWidget {
+  int potin;
+
+  SuccessPage(this.potin);
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +42,7 @@ class SuccessPage extends StatelessWidget {
           Container(
             padding: EdgeInsets.only(top: 14),
             child: Text(
-              "-100",
+              "-$potin",
               style: TextStyle(
                   color: Colors.black,
                   fontSize: 15,
@@ -70,7 +73,7 @@ class SuccessPage extends StatelessWidget {
                 border: Border.all(color: Color(0xff0CC975), width: 1),
                 borderRadius: BorderRadius.circular(21)),
             child: MaterialButton(
-              onPressed: ()=>Navigator.pop(context),
+              onPressed: () => Navigator.pop(context),
               splashColor: Colors.transparent,
               child: const Text(
                 '返回商城',

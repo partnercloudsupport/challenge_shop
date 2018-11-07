@@ -1,0 +1,27 @@
+[
+  {
+    "label":"地址",
+    "type":"address",
+    "name":"address",
+    "required":true,
+    "value": {
+      "userName":"码农弟弟",
+      "postalCode":"3350005",
+      "provinceName":"福建省",
+      "provinceId":2,
+      "cityName":"福州市",
+      "cityId":4,
+      "areaName":"鼓楼区",
+      "areaId":6,
+      "detailInfo":"五四路信和广场4楼",
+      "telNumber":"15695912900"
+    }
+  },
+  {
+    "label":"QQ",
+    "required":true,
+    "type":"text",
+    "name":"qq",
+    "value": "283326102"
+  }
+]

@@ -1,3 +1,4 @@
+import 'package:after_layout/after_layout.dart';
 import 'package:challenge_shop/common/state_cover.dart';
 import 'package:challenge_shop/data/model/paging_info.dart';
 import 'package:challenge_shop/data/model/product.dart';
@@ -15,7 +16,7 @@ class HomePage extends StatefulWidget {
   State<StatefulWidget> createState() => new _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _HomePageState extends State<HomePage> with AfterLayoutMixin<HomePage> {
   ShopBannerViewmodel _shopBannerViewmodel;
   List<Product> _datalist;
   PagingInfo _pagingInfo = PagingInfo(1);
@@ -36,11 +37,11 @@ class _HomePageState extends State<HomePage> {
       }
     });
     super.initState();
-    _onRefresh(true);
   }
+
   @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
+  void afterFirstLayout(BuildContext context) {
+    _onRefresh(true);
   }
 
   @override
@@ -100,7 +101,9 @@ class _HomePageState extends State<HomePage> {
         .listen((homePageViewmodel) {
       if (_pagingInfo.isFirstPage()) {
         setState(() {
-          _shopBannerViewmodel = homePageViewmodel.shopBannerViewmodel;
+          if (homePageViewmodel.shopBannerViewmodel != null) {
+            _shopBannerViewmodel = homePageViewmodel.shopBannerViewmodel;
+          }
           _datalist = homePageViewmodel.pageInfo.listData;
         });
       } else {

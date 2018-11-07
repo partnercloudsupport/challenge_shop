@@ -2,13 +2,16 @@ import 'dart:async' show Future;
 import 'dart:convert';
 
 import 'package:challenge_shop/data/converter/shop_banner_converter.dart';
+import 'package:challenge_shop/data/model/address_field.dart';
 import 'package:challenge_shop/data/model/district.dart';
+import 'package:challenge_shop/data/model/exchange_form.dart';
 import 'package:challenge_shop/data/model/exchange_order.dart';
 import 'package:challenge_shop/data/model/my_score_info_model.dart';
 import 'package:challenge_shop/data/model/page_info.dart';
 import 'package:challenge_shop/data/model/product.dart';
 import 'package:challenge_shop/data/model/product_detail.dart';
 import 'package:challenge_shop/data/model/score_history_info.dart';
+import 'package:challenge_shop/data/viewModel/exchange_form_viewmodel.dart';
 import 'package:challenge_shop/data/viewModel/shop_banner_viewmodel.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:rxdart/rxdart.dart';
@@ -64,5 +67,36 @@ class MockService {
 
   Observable<List<District>> getDistricts() {
     return rxLoadJson("district").map((it) => District.getDistrictList(it));
+  }
+
+  Observable<ExchangeFormViewmodel> getExchangeForms() {
+    return rxLoadJson("exchange_form").map((it) {
+      return ExchangeForm.getExchangeFormList(it);
+    }).map((exchangeFormList) {
+      ExchangeFormViewmodel viewmodel = ExchangeFormViewmodel();
+      viewmodel.valueForms = List();
+      exchangeFormList.forEach((exchangeForm) {
+        if (exchangeForm.type == "address") {
+          AddressField addressField = AddressField.fromJson(exchangeForm.value);
+          AddressForm addressForm = AddressForm();
+          addressForm.value = addressField;
+          addressForm.type = exchangeForm.type;
+          addressForm.required = exchangeForm.required;
+          addressForm.label = exchangeForm.label;
+          addressForm.name = exchangeForm.name;
+          viewmodel.addressForm = addressForm;
+        } else {
+          ValueForm valueForm = ValueForm();
+          String value = exchangeForm.value.toString();
+          valueForm.value = value;
+          valueForm.type = exchangeForm.type;
+          valueForm.required = exchangeForm.required;
+          valueForm.label = exchangeForm.label;
+          valueForm.name = exchangeForm.name;
+          viewmodel.valueForms.add(valueForm);
+        }
+      });
+      return viewmodel;
+    });
   }
 }

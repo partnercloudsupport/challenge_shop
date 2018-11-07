@@ -1,12 +1,16 @@
 import 'package:challenge_shop/common/state_cover.dart';
+import 'package:challenge_shop/data/model/address_param.dart';
 import 'package:challenge_shop/data/model/district.dart';
 import 'package:challenge_shop/data/model/product_detail.dart';
 import 'package:challenge_shop/data/remote_service.dart';
+import 'package:challenge_shop/data/viewModel/exchange_form_viewmodel.dart';
 import 'package:challenge_shop/data/viewModel/product_detail_viewmodel.dart';
+import 'package:challenge_shop/page/detail/exchange_dialog.dart';
 import 'package:challenge_shop/page/success/success_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_picker/flutter_picker.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
+import 'package:oktoast/oktoast.dart';
 
 class GoodsDetailPage extends StatefulWidget {
   int _productId;
@@ -25,8 +29,21 @@ class GoodsDetailPageState extends State<GoodsDetailPage> {
   List<PickerItem> _pickItems;
   RemoteService _dataService = RemoteService();
   StateCoverController _stateCoverController;
-
   String _districtStr = "配送地址";
+  ExchangeFormViewmodel _exchangeFormViewmodel;
+  int _provinceId = 0;
+  int _cityId = 0;
+  int _areaId = 0;
+
+  final TextEditingController _userNameController = TextEditingController();
+  final TextEditingController _telController = TextEditingController();
+  final TextEditingController _postalCodeController = TextEditingController();
+  final TextEditingController _addressController = TextEditingController();
+
+  List<TextEditingController> otherControllers = List();
+  Picker _picker;
+
+//  List<>
 
   @override
   void initState() {
@@ -49,8 +66,14 @@ class GoodsDetailPageState extends State<GoodsDetailPage> {
       viewmodel.productDetail = productDetail;
       viewmodel.districts = districtList;
       return viewmodel;
+    }).zipWith(_dataService.getExchangeForms(),
+            (productDetailViewmodel, exchangeFormViewmodel) {
+      productDetailViewmodel.exchangeFormViewmodel = exchangeFormViewmodel;
+      return productDetailViewmodel;
     }).listen((it) {
       setState(() {
+        _exchangeFormViewmodel = it.exchangeFormViewmodel;
+        initForms();
         _productDetail = it.productDetail;
         _districts = it.districts;
         _pickItems = [];
@@ -70,8 +93,31 @@ class GoodsDetailPageState extends State<GoodsDetailPage> {
           });
           _pickItems.add(pi0);
         });
-
         _stateCoverController.status.value = StateCoverStatus.content;
+
+        _picker = new Picker(
+            adapter: PickerDataAdapter(data: _pickItems),
+            changeToFirst: true,
+            hideHeader: true,
+            textAlign: TextAlign.left,
+            columnPadding: const EdgeInsets.all(8.0),
+            onConfirm: (Picker picker, List value) {
+              String districtStr = picker.getSelectedValues().map((district) {
+                return (district as District).name;
+              }).join(" ");
+
+              List<int> ids = picker.getSelectedValues().map((district) {
+                return (district as District).id;
+              }).toList();
+
+              _provinceId = ids[0];
+              _cityId = ids[1];
+              _areaId = ids[2];
+
+              setState(() {
+                _districtStr = districtStr;
+              });
+            });
       });
     }, onError: (error) {
       _stateCoverController.status.value = StateCoverStatus.loadFail;
@@ -157,6 +203,7 @@ class GoodsDetailPageState extends State<GoodsDetailPage> {
                   color: Colors.white,
                   child: TextField(
                     style: TextStyle(fontSize: 15, color: Colors.black),
+                    controller: _userNameController,
                     enabled:
                         _productDetail?.exchangeStatus?.canExchange ?? false,
                     decoration: InputDecoration.collapsed(
@@ -176,6 +223,7 @@ class GoodsDetailPageState extends State<GoodsDetailPage> {
                   color: Colors.white,
                   child: TextField(
                     style: TextStyle(fontSize: 15, color: Colors.black),
+                    controller: _telController,
                     enabled:
                         _productDetail?.exchangeStatus?.canExchange ?? false,
                     decoration: InputDecoration.collapsed(
@@ -194,6 +242,7 @@ class GoodsDetailPageState extends State<GoodsDetailPage> {
                   padding: EdgeInsets.all(15),
                   color: Colors.white,
                   child: TextField(
+                    controller: _postalCodeController,
                     style: TextStyle(fontSize: 15, color: Colors.black),
                     enabled:
                         _productDetail?.exchangeStatus?.canExchange ?? false,
@@ -236,6 +285,7 @@ class GoodsDetailPageState extends State<GoodsDetailPage> {
                   padding: EdgeInsets.all(15),
                   color: Colors.white,
                   child: TextField(
+                    controller: _addressController,
                     style: TextStyle(fontSize: 15, color: Colors.black),
                     enabled:
                         _productDetail?.exchangeStatus?.canExchange ?? false,
@@ -247,6 +297,9 @@ class GoodsDetailPageState extends State<GoodsDetailPage> {
                       ),
                     ),
                   ),
+                ),
+                Column(
+                  children: getOtherFields(),
                 ),
                 Center(
                   child: Padding(
@@ -261,9 +314,6 @@ class GoodsDetailPageState extends State<GoodsDetailPage> {
                     ),
                   ),
                 ),
-                Column(
-                  children: getOtherFields(),
-                ),
               ],
             ),
           ),
@@ -271,8 +321,32 @@ class GoodsDetailPageState extends State<GoodsDetailPage> {
   }
 
   List<Widget> getOtherFields() {
-    List<Widget> list=List();
+    List<Widget> list = List();
+    _exchangeFormViewmodel?.valueForms?.forEach((valueForm) {
+      int index = _exchangeFormViewmodel.valueForms.indexOf(valueForm);
+      list.add(getField(valueForm, otherControllers[index]));
+    });
     return list;
+  }
+
+  Widget getField(ValueForm valueForm, TextEditingController controller) {
+    return Container(
+      margin: EdgeInsets.only(top: 1),
+      padding: EdgeInsets.all(15),
+      color: Colors.white,
+      child: TextField(
+        controller: controller,
+        style: TextStyle(fontSize: 15, color: Colors.black),
+        enabled: _productDetail?.exchangeStatus?.canExchange ?? false,
+        decoration: InputDecoration.collapsed(
+          hintText: '${valueForm.label}',
+          hintStyle: TextStyle(
+            fontSize: 15,
+            color: Color(0xffaaaaaa),
+          ),
+        ),
+      ),
+    );
   }
 
   Widget getButton() {
@@ -298,10 +372,7 @@ class GoodsDetailPageState extends State<GoodsDetailPage> {
         ),
         onTap: () {
           if (_productDetail?.exchangeStatus?.canExchange ?? false) {
-            Navigator.of(context)
-                .pushReplacement(MaterialPageRoute(builder: (_) {
-              return SuccessPage();
-            }));
+            submit();
           }
         },
       );
@@ -319,6 +390,79 @@ class GoodsDetailPageState extends State<GoodsDetailPage> {
         ),
       );
     }
+  }
+
+  checkCanSubmit() {
+    if (_userNameController.text.isEmpty) {
+      showToast("收货人不可为空", position: ToastPosition.bottom);
+      return false;
+    }
+    if (_telController.text.isEmpty) {
+      showToast("手机号不可为空", position: ToastPosition.bottom);
+      return false;
+    }
+    if (_postalCodeController.text.isEmpty) {
+      showToast("邮政编码不可为空", position: ToastPosition.bottom);
+      return false;
+    }
+    if (_addressController.text.isEmpty) {
+      showToast("详细地址不可为空", position: ToastPosition.bottom);
+      return false;
+    }
+    if (_districtStr.replaceAll(" ", "").isEmpty) {
+      showToast("必须选择配送地址", position: ToastPosition.bottom);
+      return false;
+    }
+    bool b = !_exchangeFormViewmodel?.valueForms?.any((valueForm) {
+      int index = _exchangeFormViewmodel.valueForms.indexOf(valueForm);
+      TextEditingController controller = otherControllers[index];
+      if (controller.text.isEmpty && valueForm.required) {
+        showToast("${valueForm.label}不可为空", position: ToastPosition.bottom);
+        return true;
+      }
+      return false;
+    });
+
+    return b;
+  }
+
+  submit() {
+    if (!checkCanSubmit()) {
+      return;
+    }
+    AddressParam addressParam = AddressParam();
+    addressParam.detailInfo = _addressController.text;
+    addressParam.postalCode = _postalCodeController.text;
+    addressParam.telNumber = _telController.text;
+    addressParam.userName = _userNameController.text;
+    addressParam.provinceId = _provinceId;
+    addressParam.cityId = _cityId;
+    addressParam.areaId = _areaId;
+
+    Map params = Map();
+    params["address"] = addressParam.toJson();
+    _exchangeFormViewmodel.valueForms.forEach((valueForm) {
+      int index = _exchangeFormViewmodel.valueForms.indexOf(valueForm);
+      TextEditingController controller = otherControllers[index];
+      params["${valueForm.name}"] = controller.text;
+    });
+    print(params.toString());
+
+    showDialog<Null>(
+        context: context, //BuildContext对象
+        barrierDismissible: false,
+        builder: (BuildContext context) {
+          return ExchangeDialog(_productDetail.point, () {
+            Navigator.pop(context);
+            Navigator.of(context).pushReplacement(
+              MaterialPageRoute(
+                builder: (_) {
+                  return SuccessPage(_productDetail.point);
+                },
+              ),
+            );
+          });
+        });
   }
 
   Widget getBanner() {
@@ -344,31 +488,12 @@ class GoodsDetailPageState extends State<GoodsDetailPage> {
   }
 
   showPicker(BuildContext context) {
-    Picker picker = new Picker(
-        adapter: PickerDataAdapter(data: _pickItems),
-        changeToFirst: true,
-        hideHeader: true,
-        textAlign: TextAlign.left,
-        columnPadding: const EdgeInsets.all(8.0),
-        onConfirm: (Picker picker, List value) {
-          String districtStr = picker.getSelectedValues().map((district) {
-            return (district as District).name;
-          }).join(" ");
-          setState(() {
-            _districtStr = districtStr;
-          });
-
-//          print(picker.getSelectedValues().map((district) {
-//            return (district as District).id;
-//          }));
-//          print(value.toString());
-//          print(picker.getSelectedValues());
-        });
-    picker.showDialog(context);
+    _picker.showDialog(context);
   }
 
   Text getDistrictText() {
-    if (_districtStr == "配送地址") {
+    if (_districtStr == "配送地址" || _districtStr.replaceAll(" ", "") == "") {
+      _districtStr = "";
       return Text(
         "配送地址",
         style: TextStyle(
@@ -385,5 +510,29 @@ class GoodsDetailPageState extends State<GoodsDetailPage> {
         ),
       );
     }
+  }
+
+  void initForms() {
+    _provinceId = _exchangeFormViewmodel?.addressForm?.value?.provinceId;
+    _cityId = _exchangeFormViewmodel?.addressForm?.value?.cityId;
+    _areaId = _exchangeFormViewmodel?.addressForm?.value?.areaId;
+
+    _userNameController.text =
+        _exchangeFormViewmodel?.addressForm?.value?.userName ?? "";
+    _telController.text =
+        _exchangeFormViewmodel?.addressForm?.value?.telNumber ?? "";
+    _postalCodeController.text =
+        _exchangeFormViewmodel?.addressForm?.value?.postalCode ?? "";
+    _addressController.text =
+        _exchangeFormViewmodel?.addressForm?.value?.detailInfo ?? "";
+    _districtStr =
+        "${_exchangeFormViewmodel?.addressForm?.value?.provinceName ?? ""} ${_exchangeFormViewmodel?.addressForm?.value?.cityName ?? ""} ${_exchangeFormViewmodel?.addressForm?.value?.areaName ?? ""} ";
+
+    otherControllers.clear();
+    _exchangeFormViewmodel?.valueForms?.forEach((valueForm) {
+      TextEditingController controller = TextEditingController();
+      controller.text = valueForm.value ?? "";
+      otherControllers.add(controller);
+    });
   }
 }

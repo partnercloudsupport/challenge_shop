@@ -3,6 +3,7 @@ import 'package:challenge_shop/data/model/district.dart';
 import 'package:challenge_shop/data/model/exchange_order.dart';
 import 'package:challenge_shop/data/model/page_info.dart';
 import 'package:challenge_shop/data/model/product_detail.dart';
+import 'package:challenge_shop/data/viewModel/exchange_form_viewmodel.dart';
 import 'package:challenge_shop/data/viewModel/home_page_viewmodel.dart';
 import 'package:challenge_shop/data/viewModel/shop_banner_viewmodel.dart';
 import 'package:rxdart/rxdart.dart';
@@ -53,7 +54,11 @@ class RemoteService {
     return _mockService.getOrderDetail();
   }
 
-  Observable<List<District>> getDistricts(){
+  Observable<List<District>> getDistricts() {
     return _mockService.getDistricts();
+  }
+
+  Observable<ExchangeFormViewmodel> getExchangeForms() {
+    return _mockService.getExchangeForms();
   }
 }

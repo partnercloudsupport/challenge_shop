@@ -22,7 +22,6 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^0.1.2
-#  sticky_headers: "^0.1.7"#listview悬停section
   flutter_swiper : ^1.1.4 #轮播图
   marquee: ^0.1.0 #跑马灯效果
   rxdart: ^0.19.0
@@ -32,7 +31,7 @@ dependencies:
   pull_to_refresh: ^1.1.6
   flutter_spinkit: ^3.0.0
   flutter_picker: ^1.0.2
-
+  after_layout: ^1.0.7
 
 
 dev_dependencies:
@@ -71,5 +70,7 @@ flutter:
     - assets/json/products.json
     - assets/json/score_history.json
     - assets/json/district.json
+    - assets/json/exchange_form.json
+
 
 

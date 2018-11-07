@@ -72,18 +72,23 @@ class StateCoverState extends State<StateCover> {
   }
 
   Widget getLoadCover() {
-    return Container(
-      color: Color(0xfff5f5f5),
-      child: Column(children: [
-        Expanded(
-          child: Center(
-            child: SpinKitCircle(color: Color(0xff0CC975)),
-          ),
+    return Stack(
+      children: <Widget>[
+        widget.child,
+        Container(
+          color: Color(0xfff5f5f5),
+          child: Column(children: [
+            Expanded(
+              child: Center(
+                child: SpinKitCircle(color: Color(0xff0CC975)),
+              ),
+            ),
+            Expanded(
+              child: Container(),
+            )
+          ]),
         ),
-        Expanded(
-          child: Container(),
-        )
-      ]),
+      ],
     );
   }
 

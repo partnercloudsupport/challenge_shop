@@ -10,7 +10,7 @@ import 'package:challenge_shop/page/reward_history/reward_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:oktoast/oktoast.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
-
+import 'package:after_layout/after_layout.dart';
 import 'reward_record_cell.dart';
 
 class RewardHistoryPage extends StatefulWidget {
@@ -18,7 +18,7 @@ class RewardHistoryPage extends StatefulWidget {
   State<StatefulWidget> createState() => RewardHistoryPageState();
 }
 
-class RewardHistoryPageState extends State<RewardHistoryPage> {
+class RewardHistoryPageState extends State<RewardHistoryPage> with AfterLayoutMixin<RewardHistoryPage> {
   PagingInfo _pagingInfo = PagingInfo(1);
   RemoteService _dataService = RemoteService();
   RefreshController _refreshController;
@@ -39,13 +39,19 @@ class RewardHistoryPageState extends State<RewardHistoryPage> {
       }
     });
 
-    _onRefresh(true);
     busSubscription = eventBus
         .on<ProductOrderClickEvent>()
         .listen((ProductOrderClickEvent event) {
       showDetailDialog(event.orderId);
     });
   }
+
+
+  @override
+  void afterFirstLayout(BuildContext context) {
+    _onRefresh(true);
+  }
+
 
   void showDetailDialog(int orderId) {
     showDialog<Null>(

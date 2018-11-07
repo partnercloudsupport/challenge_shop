@@ -1,3 +1,4 @@
+import 'package:after_layout/after_layout.dart';
 import 'package:challenge_shop/common/state_cover.dart';
 import 'package:challenge_shop/data/model/paging_info.dart';
 import 'package:challenge_shop/data/model/score_history_info.dart';
@@ -14,7 +15,8 @@ class ScoreRecordPage extends StatefulWidget {
   State<StatefulWidget> createState() => ScoreRecordPageState();
 }
 
-class ScoreRecordPageState extends State<ScoreRecordPage> {
+class ScoreRecordPageState extends State<ScoreRecordPage>
+    with AfterLayoutMixin<ScoreRecordPage> {
   List<ScoreHistoryInfo> _datalist;
   ScoreHistoryNotice scoreHistoryNotice;
 
@@ -35,6 +37,10 @@ class ScoreRecordPageState extends State<ScoreRecordPage> {
       }
     });
     super.initState();
+  }
+
+  @override
+  void afterFirstLayout(BuildContext context) {
     _onRefresh(true);
   }
 
@@ -100,15 +106,16 @@ class ScoreRecordPageState extends State<ScoreRecordPage> {
     _dataService
         .getScoreHistory(_pagingInfo.pageNum, _pagingInfo.pageSize)
         .listen((pageInfo) {
-      if (_pagingInfo.isFirstPage()) {
-        setState(() {
+      setState(() {
+        if (_pagingInfo.isFirstPage()) {
           _datalist = pageInfo.listData;
-        });
-      } else {
-        setState(() {
+          if(pageInfo.extras!=null){
+            scoreHistoryNotice=ScoreHistoryNotice(pageInfo.extras["point"],pageInfo.extras["date"]);
+          }
+        } else {
           pageInfo.listData.forEach((order) => _datalist.add(order));
-        });
-      }
+        }
+      });
       loadDataSuccess(_datalist.length ?? 0, pageInfo.totalNum);
     }, onError: (error) {
       loadDataFail(error);
