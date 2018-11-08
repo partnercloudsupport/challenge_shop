@@ -30,10 +30,9 @@ class MockService {
 //        .map((jsonStr) => json.decode(jsonStr));
   }
 
-  Observable<ShopBannerViewmodel> getHomeBannerModel() {
+  Observable<MyScoreInfoModel> getHomeBannerModel() {
     return rxLoadJson("my_score_info")
-        .map((obj) => MyScoreInfoModel.fromJson(obj))
-        .map((it) => ShopBannerConverter.conver(it));
+        .map((obj) => MyScoreInfoModel.fromJson(obj));
   }
 
   Observable<PageInfo> getHomeProducts() {

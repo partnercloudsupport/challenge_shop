@@ -120,6 +120,7 @@ class GoodsDetailPageState extends State<GoodsDetailPage> {
             });
       });
     }, onError: (error) {
+      debugPrint("${error.toString()}");
       _stateCoverController.status.value = StateCoverStatus.loadFail;
     });
   }

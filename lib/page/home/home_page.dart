@@ -115,6 +115,7 @@ class _HomePageState extends State<HomePage> with AfterLayoutMixin<HomePage> {
       loadDataSuccess(
           _datalist.length ?? 0, homePageViewmodel.pageInfo.totalNum);
     }, onError: (error) {
+      debugPrint("${error.toString()}");
       loadDataFail(error);
     });
   }
@@ -138,6 +139,7 @@ class _HomePageState extends State<HomePage> with AfterLayoutMixin<HomePage> {
   }
 
   loadDataFail(Error error) {
+    _stateCoverController.showLoadFail();
     showToast("${error.toString()}", position: ToastPosition.bottom);
     if (_pagingInfo.isFirstPage()) {
       _refreshController.sendBack(true, RefreshStatus.idle);

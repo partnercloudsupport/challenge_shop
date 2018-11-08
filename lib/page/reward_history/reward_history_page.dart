@@ -75,6 +75,7 @@ class RewardHistoryPageState extends State<RewardHistoryPage> with AfterLayoutMi
       );
     }, onError: (error) {
       Navigator.pop(context);
+      debugPrint("${error.toString()}");
       showToast("${error.toString()}", position: ToastPosition.bottom);
     });
   }
@@ -132,6 +133,7 @@ class RewardHistoryPageState extends State<RewardHistoryPage> with AfterLayoutMi
       }
       loadDataSuccess(_datalist.length ?? 0, pageInfo.totalNum);
     }, onError: (error) {
+      debugPrint("${error.toString()}");
       loadDataFail(error);
     });
   }
@@ -155,6 +157,7 @@ class RewardHistoryPageState extends State<RewardHistoryPage> with AfterLayoutMi
   }
 
   loadDataFail(Error error) {
+    _stateCoverController.showLoadFail();
     showToast("${error.toString()}", position: ToastPosition.bottom);
     if (_pagingInfo.isFirstPage()) {
       _refreshController.sendBack(true, RefreshStatus.idle);

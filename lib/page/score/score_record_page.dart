@@ -118,6 +118,7 @@ class ScoreRecordPageState extends State<ScoreRecordPage>
       });
       loadDataSuccess(_datalist.length ?? 0, pageInfo.totalNum);
     }, onError: (error) {
+      debugPrint("${error.toString()}");
       loadDataFail(error);
     });
   }
@@ -141,6 +142,7 @@ class ScoreRecordPageState extends State<ScoreRecordPage>
   }
 
   loadDataFail(Error error) {
+    _stateCoverController.showLoadFail();
     showToast("${error.toString()}", position: ToastPosition.bottom);
     if (_pagingInfo.isFirstPage()) {
       _refreshController.sendBack(true, RefreshStatus.idle);
