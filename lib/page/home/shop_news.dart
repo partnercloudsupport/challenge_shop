@@ -37,17 +37,17 @@ class ShopNewsState extends State<ShopNews> with WidgetsBindingObserver {
         position = 0;
         scroController.jumpTo(position);
       }
-      position += 0.4;
+      position += 0.6;
       scroController.animateTo(position,
-          duration: new Duration(milliseconds: 500), curve: Curves.linear);
+          duration: new Duration(milliseconds: 60), curve: Curves.linear);
     });
   }
 
   @override
   void dispose() {
     WidgetsBinding.instance.removeObserver(this);
-    super.dispose();
     scroController.dispose();
+    super.dispose();
   }
 
   @override
