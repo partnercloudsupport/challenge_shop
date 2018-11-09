@@ -1,5 +1,6 @@
-import 'package:challenge_shop/data/model/exchange_order.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:challenge_shop/common/common_tool.dart';
+import 'package:challenge_shop/data/model/exchange_order.dart';
 import 'package:challenge_shop/util/time_util.dart';
 import 'package:flutter/material.dart';
 import 'package:oktoast/oktoast.dart';
@@ -55,8 +56,22 @@ class RewardDialog extends StatelessWidget {
           Positioned(
             top: 11,
             left: 8,
-            child: Image.network("${_exchangeOrder?.product?.cover?.thumb ?? ""}",
-                width: 73, height: 73, fit: BoxFit.cover),
+            child: Container(
+              width: 73,
+              height: 73,
+              child: CachedNetworkImage(
+                imageUrl: "${_exchangeOrder?.product?.cover?.thumb ?? ""}",
+                fit: BoxFit.cover,
+                placeholder: Image.asset(
+                  "assets/imgs/3.0x/place_holder.png",
+                  fit: BoxFit.cover,
+                ),
+                errorWidget: Image.asset(
+                  "assets/imgs/3.0x/place_holder.png",
+                  fit: BoxFit.cover,
+                ),
+              ),
+            ),
           ),
           Positioned(
             top: 8,

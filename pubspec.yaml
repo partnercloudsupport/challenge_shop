@@ -33,6 +33,7 @@ dependencies:
   flutter_picker: ^1.0.2
   after_layout: ^1.0.7
   dio: ^1.0.6
+  cached_network_image: ^0.5.0
 
 
 dev_dependencies:
@@ -61,6 +62,7 @@ flutter:
     - assets/imgs/3.0x/ic_question.png
     - assets/imgs/3.0x/ic_news.png
     - assets/imgs/3.0x/ic_cover.png
+    - assets/imgs/3.0x/place_holder.png
 
   #mock数据
     - assets/json/exchange_history.json

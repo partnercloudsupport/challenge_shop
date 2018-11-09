@@ -1,14 +1,13 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:challenge_shop/data/model/exchange_order.dart';
 import 'package:challenge_shop/eventbus/event_bus.dart';
 import 'package:challenge_shop/util/time_util.dart';
-import 'package:event_bus/event_bus.dart';
 import 'package:flutter/material.dart';
 
 class RewardRecordCell extends StatelessWidget {
   ExchangeOrder order;
 
   RewardRecordCell(this.order);
-
 
   @override
   Widget build(BuildContext context) {
@@ -52,11 +51,21 @@ class RewardRecordCell extends StatelessWidget {
               children: <Widget>[
                 Container(
                   margin: EdgeInsets.only(left: 20, right: 20),
-                  child: Image.network(
-                    "${order?.product?.cover?.thumb ?? ""}",
+                  child: Container(
                     width: 70,
                     height: 70,
-                    fit: BoxFit.cover,
+                    child: CachedNetworkImage(
+                      imageUrl: "${order?.product?.cover?.thumb ?? ""}",
+                      fit: BoxFit.cover,
+                      placeholder: Image.asset(
+                        "assets/imgs/3.0x/place_holder.png",
+                        fit: BoxFit.cover,
+                      ),
+                      errorWidget: Image.asset(
+                        "assets/imgs/3.0x/place_holder.png",
+                        fit: BoxFit.cover,
+                      ),
+                    ),
                   ),
                 ),
                 Expanded(

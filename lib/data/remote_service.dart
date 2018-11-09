@@ -27,7 +27,7 @@ class RemoteService {
         (myScoreInfoModel, latestExchangeStatusList) {
       return ShopBannerConverter.conver(
           myScoreInfoModel, latestExchangeStatusList);
-    });
+    }).onErrorReturn(null);
   }
 
   Observable<MyScoreInfoModel> getMyPoint() {
@@ -35,7 +35,7 @@ class RemoteService {
       return getData(Result.fromJson(it));
     }).map((result) {
       return MyScoreInfoModel.fromJson(result);
-    });
+    }).onErrorReturn(null);
   }
 
   Observable<List<LatestExchangeStatus>> getLatestExchangeStatus() {
@@ -91,7 +91,6 @@ class RemoteService {
         .doOnData((pageInfo) => pageInfo.listData = pageInfo.listData
             .map((it) => ScoreHistoryInfo.fromJson(it))
             .toList());
-//    return _mockService.getScoreHistory();
   }
 
   Observable<PageInfo> getOrderList(int pageNum, int pageSize) {

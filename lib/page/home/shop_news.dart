@@ -37,9 +37,9 @@ class ShopNewsState extends State<ShopNews> with WidgetsBindingObserver {
         position = 0;
         scroController.jumpTo(position);
       }
-      position += 0.6;
+      position += 1;
       scroController.animateTo(position,
-          duration: new Duration(milliseconds: 60), curve: Curves.linear);
+          duration: new Duration(milliseconds: 100), curve: Curves.linear);
     });
   }
 

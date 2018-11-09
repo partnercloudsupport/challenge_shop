@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:challenge_shop/page/detail/goods_detail_page.dart';
 import 'package:flutter/material.dart';
 
@@ -21,13 +22,29 @@ class GoodsCell extends StatelessWidget {
         },
         child: Card(
           elevation: 1.5,
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               AspectRatio(
-                aspectRatio: 1,
-                child: Image.network(imgUrl ?? "", fit: BoxFit.cover),
-              ),
+                  aspectRatio: 1,
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(6),
+                        topRight: Radius.circular(6)),
+                    child: CachedNetworkImage(
+                      imageUrl: "${imgUrl}",
+                      fit: BoxFit.cover,
+                      placeholder: Image.asset(
+                        "assets/imgs/3.0x/place_holder.png",
+                        fit: BoxFit.cover,
+                      ),
+                      errorWidget: Image.asset(
+                        "assets/imgs/3.0x/place_holder.png",
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  )),
               Padding(
                 padding: EdgeInsets.all(10),
                 child: Text(
