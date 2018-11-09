@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:challenge_shop/common/loading_dialog.dart';
+import 'package:challenge_shop/common/regex_util.dart';
 import 'package:challenge_shop/common/state_cover.dart';
 import 'package:challenge_shop/data/model/address_param.dart';
 import 'package:challenge_shop/data/model/district.dart';
@@ -256,6 +257,7 @@ class GoodsDetailPageState extends State<GoodsDetailPage> {
         child: TextField(
           style: TextStyle(fontSize: 15, color: Colors.black),
           controller: _telController,
+          keyboardType: TextInputType.number,
           enabled: _productDetail?.exchangeStatus?.canExchange ?? false,
           decoration: InputDecoration.collapsed(
             hintText: '手机号',
@@ -274,6 +276,7 @@ class GoodsDetailPageState extends State<GoodsDetailPage> {
         color: Colors.white,
         child: TextField(
           controller: _postalCodeController,
+          keyboardType: TextInputType.number,
           style: TextStyle(fontSize: 15, color: Colors.black),
           enabled: _productDetail?.exchangeStatus?.canExchange ?? false,
           decoration: InputDecoration.collapsed(
@@ -412,11 +415,23 @@ class GoodsDetailPageState extends State<GoodsDetailPage> {
       showToast("手机号不可为空", position: ToastPosition.bottom);
       return false;
     }
+    if (_telController.text.isNotEmpty &&
+        !RegexUtil.isMobileExact(_telController.text)) {
+      showToast("请输入正确的手机号", position: ToastPosition.bottom);
+      return false;
+    }
+
     if ((_exchangeFormViewmodel?.addressForm?.required ?? false) &&
         _postalCodeController.text.isEmpty) {
       showToast("邮政编码不可为空", position: ToastPosition.bottom);
       return false;
     }
+    if (_postalCodeController.text.isNotEmpty &&
+        _postalCodeController.text.length != 6) {
+      showToast("请输入正确的邮政编码", position: ToastPosition.bottom);
+      return false;
+    }
+
     if ((_exchangeFormViewmodel?.addressForm?.required ?? false) &&
         _addressController.text.isEmpty) {
       showToast("详细地址不可为空", position: ToastPosition.bottom);
