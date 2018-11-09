@@ -12,19 +12,13 @@ MyScoreInfoModel _$MyScoreInfoModelFromJson(Map<String, dynamic> json) {
       json['pointExpireNotice'] == null
           ? null
           : PointExpireNotice.fromJson(
-              json['pointExpireNotice'] as Map<String, dynamic>),
-      (json['latestExchangeStatus'] as List)
-          ?.map((e) => e == null
-              ? null
-              : LatestExchangeStatus.fromJson(e as Map<String, dynamic>))
-          ?.toList());
+              json['pointExpireNotice'] as Map<String, dynamic>));
 }
 
 Map<String, dynamic> _$MyScoreInfoModelToJson(MyScoreInfoModel instance) =>
     <String, dynamic>{
       'totalPoint': instance.totalPoint,
-      'pointExpireNotice': instance.pointExpireNotice,
-      'latestExchangeStatus': instance.latestExchangeStatus
+      'pointExpireNotice': instance.pointExpireNotice
     };
 
 PointExpireNotice _$PointExpireNoticeFromJson(Map<String, dynamic> json) {

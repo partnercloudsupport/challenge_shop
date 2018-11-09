@@ -3,7 +3,8 @@ import 'package:challenge_shop/data/viewModel/shop_banner_viewmodel.dart';
 import 'package:challenge_shop/util/time_util.dart';
 
 class ShopBannerConverter {
-  static ShopBannerViewmodel conver(MyScoreInfoModel myScoreInfoModel) {
+  static ShopBannerViewmodel conver(MyScoreInfoModel myScoreInfoModel,
+      List<LatestExchangeStatus> latestExchangeStatusList) {
     ShopBannerViewmodel vm = ShopBannerViewmodel();
     vm.score = myScoreInfoModel.totalPoint;
     if (myScoreInfoModel.pointExpireNotice != null &&
@@ -12,10 +13,8 @@ class ShopBannerConverter {
       vm.pointExpireNotice =
           "有${myScoreInfoModel.pointExpireNotice.point}积分即将在${myScoreInfoModel.pointExpireNotice.date}过期";
     }
-    myScoreInfoModel?.latestExchangeStatus = [];
-    if (myScoreInfoModel?.latestExchangeStatus != null) {
-      vm.latestExchangeStatus =
-          myScoreInfoModel?.latestExchangeStatus?.map((exchangeStatus) {
+    if (latestExchangeStatusList != null) {
+      vm.latestExchangeStatus = latestExchangeStatusList?.map((exchangeStatus) {
         BannerNews bannerNews = BannerNews();
         bannerNews.productName = exchangeStatus.product.title;
         bannerNews.userName = exchangeStatus.user.nickname;
@@ -29,7 +28,6 @@ class ShopBannerConverter {
         return bannerNews;
       }).toList();
     }
-
     return vm;
   }
 }

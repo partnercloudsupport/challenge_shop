@@ -78,6 +78,12 @@ class Api {
     return response.data;
   }
 
+  Future<dynamic> getLatestExchangeStatus() async {
+    Response response =
+    await _dio.get("/v2/store/latest-exchange-status");
+    return response.data;
+  }
+
   Future<dynamic> doExchange(int productId, Map param) async {
     Response response = await _dio.post(
         "/v2/store/products/${productId}/exchange",

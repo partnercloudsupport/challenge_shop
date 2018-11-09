@@ -199,105 +199,8 @@ class GoodsDetailPageState extends State<GoodsDetailPage> {
                     style: TextStyle(fontSize: 12, color: Color(0xff717171)),
                   ),
                 ),
-                Container(
-                  padding: EdgeInsets.all(15),
-                  color: Colors.white,
-                  child: TextField(
-                    style: TextStyle(fontSize: 15, color: Colors.black),
-                    controller: _userNameController,
-                    enabled:
-                        _productDetail?.exchangeStatus?.canExchange ?? false,
-                    decoration: InputDecoration.collapsed(
-                      hintText: '收货人',
-                      hintStyle: TextStyle(
-                        fontSize: 15,
-                        color: Color(0xffaaaaaa),
-                      ),
-                    ),
-                  ),
-                ),
-                Container(
-                  margin: EdgeInsets.only(
-                    top: 1,
-                  ),
-                  padding: EdgeInsets.all(15),
-                  color: Colors.white,
-                  child: TextField(
-                    style: TextStyle(fontSize: 15, color: Colors.black),
-                    controller: _telController,
-                    enabled:
-                        _productDetail?.exchangeStatus?.canExchange ?? false,
-                    decoration: InputDecoration.collapsed(
-                      hintText: '手机号',
-                      hintStyle: TextStyle(
-                        fontSize: 15,
-                        color: Color(0xffaaaaaa),
-                      ),
-                    ),
-                  ),
-                ),
-                Container(
-                  margin: EdgeInsets.only(
-                    top: 1,
-                  ),
-                  padding: EdgeInsets.all(15),
-                  color: Colors.white,
-                  child: TextField(
-                    controller: _postalCodeController,
-                    style: TextStyle(fontSize: 15, color: Colors.black),
-                    enabled:
-                        _productDetail?.exchangeStatus?.canExchange ?? false,
-                    decoration: InputDecoration.collapsed(
-                      hintText: '邮编',
-                      hintStyle: TextStyle(
-                        fontSize: 15,
-                        color: Color(0xffaaaaaa),
-                      ),
-                    ),
-                  ),
-                ),
-                Container(
-                  margin: EdgeInsets.only(
-                    top: 1,
-                  ),
-                  padding: EdgeInsets.all(15),
-                  color: Colors.white,
-                  child: InkWell(
-                    onTap: () {
-                      if (_productDetail?.exchangeStatus?.canExchange ??
-                          false) {
-                        showPicker(context);
-                      }
-                    },
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: <Widget>[
-                        getDistrictText(),
-                        Icon(
-                          Icons.navigate_next,
-                          color: Color(0xffaaaaaa),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                Container(
-                  margin: EdgeInsets.only(top: 1),
-                  padding: EdgeInsets.all(15),
-                  color: Colors.white,
-                  child: TextField(
-                    controller: _addressController,
-                    style: TextStyle(fontSize: 15, color: Colors.black),
-                    enabled:
-                        _productDetail?.exchangeStatus?.canExchange ?? false,
-                    decoration: InputDecoration.collapsed(
-                      hintText: '详细地址:如街道,小区,门号等',
-                      hintStyle: TextStyle(
-                        fontSize: 15,
-                        color: Color(0xffaaaaaa),
-                      ),
-                    ),
-                  ),
+                Column(
+                  children: getAddressFileds(),
                 ),
                 Column(
                   children: getOtherFields(),
@@ -320,6 +223,115 @@ class GoodsDetailPageState extends State<GoodsDetailPage> {
           ),
         ));
   }
+
+
+  List<Widget> getAddressFileds() {
+    if(_productDetail?.kindLabel=="虚拟商品"){
+      return [];
+    }
+
+    return [Container(
+      padding: EdgeInsets.all(15),
+      color: Colors.white,
+      child: TextField(
+        style: TextStyle(fontSize: 15, color: Colors.black),
+        controller: _userNameController,
+        enabled:
+        _productDetail?.exchangeStatus?.canExchange ?? false,
+        decoration: InputDecoration.collapsed(
+          hintText: '收货人',
+          hintStyle: TextStyle(
+            fontSize: 15,
+            color: Color(0xffaaaaaa),
+          ),
+        ),
+      ),
+    ),
+    Container(
+      margin: EdgeInsets.only(
+        top: 1,
+      ),
+      padding: EdgeInsets.all(15),
+      color: Colors.white,
+      child: TextField(
+        style: TextStyle(fontSize: 15, color: Colors.black),
+        controller: _telController,
+        enabled:
+        _productDetail?.exchangeStatus?.canExchange ?? false,
+        decoration: InputDecoration.collapsed(
+          hintText: '手机号',
+          hintStyle: TextStyle(
+            fontSize: 15,
+            color: Color(0xffaaaaaa),
+          ),
+        ),
+      ),
+    ),
+    Container(
+      margin: EdgeInsets.only(
+        top: 1,
+      ),
+      padding: EdgeInsets.all(15),
+      color: Colors.white,
+      child: TextField(
+        controller: _postalCodeController,
+        style: TextStyle(fontSize: 15, color: Colors.black),
+        enabled:
+        _productDetail?.exchangeStatus?.canExchange ?? false,
+        decoration: InputDecoration.collapsed(
+          hintText: '邮编',
+          hintStyle: TextStyle(
+            fontSize: 15,
+            color: Color(0xffaaaaaa),
+          ),
+        ),
+      ),
+    ),
+    Container(
+      margin: EdgeInsets.only(
+        top: 1,
+      ),
+      padding: EdgeInsets.all(15),
+      color: Colors.white,
+      child: InkWell(
+        onTap: () {
+          if (_productDetail?.exchangeStatus?.canExchange ??
+              false) {
+            showPicker(context);
+          }
+        },
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: <Widget>[
+            getDistrictText(),
+            Icon(
+              Icons.navigate_next,
+              color: Color(0xffaaaaaa),
+            ),
+          ],
+        ),
+      ),
+    ),
+    Container(
+      margin: EdgeInsets.only(top: 1),
+      padding: EdgeInsets.all(15),
+      color: Colors.white,
+      child: TextField(
+        controller: _addressController,
+        style: TextStyle(fontSize: 15, color: Colors.black),
+        enabled:
+        _productDetail?.exchangeStatus?.canExchange ?? false,
+        decoration: InputDecoration.collapsed(
+          hintText: '详细地址:如街道,小区,门号等',
+          hintStyle: TextStyle(
+            fontSize: 15,
+            color: Color(0xffaaaaaa),
+          ),
+        ),
+      ),
+    ),];
+  }
+
 
   List<Widget> getOtherFields() {
     List<Widget> list = List();
@@ -394,23 +406,23 @@ class GoodsDetailPageState extends State<GoodsDetailPage> {
   }
 
   checkCanSubmit() {
-    if (_userNameController.text.isEmpty) {
+    if ((_exchangeFormViewmodel?.addressForm?.required??false)&&_userNameController.text.isEmpty) {
       showToast("收货人不可为空", position: ToastPosition.bottom);
       return false;
     }
-    if (_telController.text.isEmpty) {
+    if ((_exchangeFormViewmodel?.addressForm?.required??false)&&_telController.text.isEmpty) {
       showToast("手机号不可为空", position: ToastPosition.bottom);
       return false;
     }
-    if (_postalCodeController.text.isEmpty) {
+    if ((_exchangeFormViewmodel?.addressForm?.required??false)&&_postalCodeController.text.isEmpty) {
       showToast("邮政编码不可为空", position: ToastPosition.bottom);
       return false;
     }
-    if (_addressController.text.isEmpty) {
+    if ((_exchangeFormViewmodel?.addressForm?.required??false)&&_addressController.text.isEmpty) {
       showToast("详细地址不可为空", position: ToastPosition.bottom);
       return false;
     }
-    if (_districtStr.replaceAll(" ", "").isEmpty) {
+    if ((_exchangeFormViewmodel?.addressForm?.required??false)&&_districtStr.replaceAll(" ", "").isEmpty) {
       showToast("必须选择配送地址", position: ToastPosition.bottom);
       return false;
     }

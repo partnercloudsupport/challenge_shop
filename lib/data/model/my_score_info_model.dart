@@ -12,10 +12,8 @@ class MyScoreInfoModel extends Object {
   @JsonKey(name: 'pointExpireNotice')
   PointExpireNotice pointExpireNotice;
 
-  @JsonKey(name: 'latestExchangeStatus')
-  List<LatestExchangeStatus> latestExchangeStatus;
 
-  MyScoreInfoModel(this.totalPoint,this.pointExpireNotice,this.latestExchangeStatus,);
+  MyScoreInfoModel(this.totalPoint,this.pointExpireNotice);
 
   factory MyScoreInfoModel.fromJson(Map<String, dynamic> srcJson) => _$MyScoreInfoModelFromJson(srcJson);
 
@@ -65,6 +63,15 @@ class LatestExchangeStatus extends Object {
   factory LatestExchangeStatus.fromJson(Map<String, dynamic> srcJson) => _$LatestExchangeStatusFromJson(srcJson);
 
   Map<String, dynamic> toJson() => _$LatestExchangeStatusToJson(this);
+
+
+  static List<LatestExchangeStatus> getLatestExchangeStatusList(List<dynamic> list){
+    List<LatestExchangeStatus> result = [];
+    list.forEach((item){
+      result.add(LatestExchangeStatus.fromJson(item));
+    });
+    return result;
+  }
 
 }
 

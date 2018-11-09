@@ -2,7 +2,6 @@ import 'package:challenge_shop/data/api.dart';
 import 'package:challenge_shop/data/converter/shop_banner_converter.dart';
 import 'package:challenge_shop/data/mock_service.dart';
 import 'package:challenge_shop/data/model/address_field.dart';
-import 'package:challenge_shop/data/model/address_param.dart';
 import 'package:challenge_shop/data/model/district.dart';
 import 'package:challenge_shop/data/model/exchange_form.dart';
 import 'package:challenge_shop/data/model/exchange_order.dart';
@@ -24,13 +23,28 @@ class RemoteService {
   Api _api = Api("http://challenge.dev.17173.com/api");
 
   Observable<ShopBannerViewmodel> getHomeBannerModel() {
+    return getMyPoint().zipWith(getLatestExchangeStatus(),
+        (myScoreInfoModel, latestExchangeStatusList) {
+      return ShopBannerConverter.conver(
+          myScoreInfoModel, latestExchangeStatusList);
+    });
+  }
+
+  Observable<MyScoreInfoModel> getMyPoint() {
     return Observable<Object>.fromFuture(_api.getMyPointInfo()).map((it) {
       return getData(Result.fromJson(it));
     }).map((result) {
       return MyScoreInfoModel.fromJson(result);
-    }).map((myScoreInfoModel) {
-      return ShopBannerConverter.conver(myScoreInfoModel);
-    }).onErrorReturn(null);
+    });
+  }
+
+  Observable<List<LatestExchangeStatus>> getLatestExchangeStatus() {
+    return Observable<Object>.fromFuture(_api.getLatestExchangeStatus())
+        .map((it) {
+      return getData(Result.fromJson(it));
+    }).map((data) {
+      return LatestExchangeStatus.getLatestExchangeStatusList(data);
+    });
   }
 
   Observable<PageInfo> getHomeProducts(int pageNum, int pageSize) {
@@ -137,8 +151,7 @@ class RemoteService {
   }
 
   Observable<Null> doExchange(int productId, Map param) {
-    return Observable<Object>.fromFuture(
-            _api.doExchange(productId, param))
+    return Observable<Object>.fromFuture(_api.doExchange(productId, param))
         .map((it) {
       checkSuccess(Result.fromJson(it));
     });
