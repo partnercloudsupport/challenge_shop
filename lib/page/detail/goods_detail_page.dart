@@ -1,3 +1,4 @@
+import 'package:challenge_shop/common/loading_dialog.dart';
 import 'package:challenge_shop/common/state_cover.dart';
 import 'package:challenge_shop/data/model/address_param.dart';
 import 'package:challenge_shop/data/model/district.dart';
@@ -5,6 +6,7 @@ import 'package:challenge_shop/data/model/product_detail.dart';
 import 'package:challenge_shop/data/remote_service.dart';
 import 'package:challenge_shop/data/viewModel/exchange_form_viewmodel.dart';
 import 'package:challenge_shop/data/viewModel/product_detail_viewmodel.dart';
+import 'package:challenge_shop/eventbus/event_bus.dart';
 import 'package:challenge_shop/page/detail/exchange_dialog.dart';
 import 'package:challenge_shop/page/success/success_page.dart';
 import 'package:flutter/material.dart';
@@ -43,8 +45,6 @@ class GoodsDetailPageState extends State<GoodsDetailPage> {
   List<TextEditingController> otherControllers = List();
   Picker _picker;
 
-//  List<>
-
   @override
   void initState() {
     _stateCoverController = StateCoverController();
@@ -66,7 +66,7 @@ class GoodsDetailPageState extends State<GoodsDetailPage> {
       viewmodel.productDetail = productDetail;
       viewmodel.districts = districtList;
       return viewmodel;
-    }).zipWith(_dataService.getExchangeForms(),
+    }).zipWith(_dataService.getExchangeForms(widget._productId),
             (productDetailViewmodel, exchangeFormViewmodel) {
       productDetailViewmodel.exchangeFormViewmodel = exchangeFormViewmodel;
       return productDetailViewmodel;
@@ -447,23 +447,39 @@ class GoodsDetailPageState extends State<GoodsDetailPage> {
       TextEditingController controller = otherControllers[index];
       params["${valueForm.name}"] = controller.text;
     });
-    print(params.toString());
-
     showDialog<Null>(
         context: context, //BuildContext对象
         barrierDismissible: false,
         builder: (BuildContext context) {
           return ExchangeDialog(_productDetail.point, () {
             Navigator.pop(context);
-            Navigator.of(context).pushReplacement(
-              MaterialPageRoute(
-                builder: (_) {
-                  return SuccessPage(_productDetail.point);
-                },
-              ),
-            );
+            doSubmit(params);
           });
         });
+  }
+
+  doSubmit(Map params) {
+    showDialog<Null>(
+        context: context, //BuildContext对象
+        barrierDismissible: false,
+        builder: (BuildContext context) {
+          return LoadingDialog();
+        });
+    _dataService.doExchange(widget._productId, params).listen((_) {
+      Navigator.pop(context);
+      eventBus.fire(ExchangeSuccessEvent());
+      Navigator.of(context).pushReplacement(
+        MaterialPageRoute(
+          builder: (_) {
+            return SuccessPage(_productDetail.point);
+          },
+        ),
+      );
+    }).onError((error) {
+      Navigator.pop(context);
+      debugPrint(error.toString());
+      showToast("${error.toString()}", position: ToastPosition.bottom);
+    });
   }
 
   Widget getBanner() {

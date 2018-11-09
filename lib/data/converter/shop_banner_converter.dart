@@ -12,21 +12,23 @@ class ShopBannerConverter {
       vm.pointExpireNotice =
           "有${myScoreInfoModel.pointExpireNotice.point}积分即将在${myScoreInfoModel.pointExpireNotice.date}过期";
     }
-
-    vm.latestExchangeStatus =
-        myScoreInfoModel.latestExchangeStatus.map((exchangeStatus) {
-      BannerNews bannerNews = BannerNews();
-      bannerNews.productName = exchangeStatus.product.title;
-      bannerNews.userName = exchangeStatus.user.nickname;
-      DateTime dateTime =
-          DateTime.fromMillisecondsSinceEpoch(exchangeStatus.createTime * 1000);
-      if (TimeUtil.isToday(dateTime)) {
-        bannerNews.createTime = "${dateTime.hour}:${dateTime.minute}";
-      } else {
-        bannerNews.createTime = "${dateTime.month}-${dateTime.day}";
-      }
-      return bannerNews;
-    }).toList();
+    myScoreInfoModel?.latestExchangeStatus = [];
+    if (myScoreInfoModel?.latestExchangeStatus != null) {
+      vm.latestExchangeStatus =
+          myScoreInfoModel?.latestExchangeStatus?.map((exchangeStatus) {
+        BannerNews bannerNews = BannerNews();
+        bannerNews.productName = exchangeStatus.product.title;
+        bannerNews.userName = exchangeStatus.user.nickname;
+        DateTime dateTime = DateTime.fromMillisecondsSinceEpoch(
+            exchangeStatus.createTime * 1000);
+        if (TimeUtil.isToday(dateTime)) {
+          bannerNews.createTime = "${dateTime.hour}:${dateTime.minute}";
+        } else {
+          bannerNews.createTime = "${dateTime.month}-${dateTime.day}";
+        }
+        return bannerNews;
+      }).toList();
+    }
 
     return vm;
   }

@@ -55,8 +55,8 @@ class RewardDialog extends StatelessWidget {
           Positioned(
             top: 11,
             left: 8,
-            child: Image.network("${_exchangeOrder?.product?.cover?.url ?? ""}",
-                width: 73, height: 73, fit: BoxFit.fill),
+            child: Image.network("${_exchangeOrder?.product?.cover?.thumb ?? ""}",
+                width: 73, height: 73, fit: BoxFit.cover),
           ),
           Positioned(
             top: 8,
@@ -145,7 +145,7 @@ class RewardDialog extends StatelessWidget {
   Color getSendStatusColor(String status) {
     if (status == "已发货") {
       return Color(0xff0CC975);
-    } else if (status == "待发货") {
+    } else if (status == "未发货") {
       return Color(0xffE98943);
     } else {
       return Colors.black;

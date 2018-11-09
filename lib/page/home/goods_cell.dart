@@ -26,7 +26,7 @@ class GoodsCell extends StatelessWidget {
             children: <Widget>[
               AspectRatio(
                 aspectRatio: 1,
-                child: Image.network(imgUrl ?? "", fit: BoxFit.fill),
+                child: Image.network(imgUrl ?? "", fit: BoxFit.cover),
               ),
               Padding(
                 padding: EdgeInsets.all(10),

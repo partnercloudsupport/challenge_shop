@@ -7,3 +7,6 @@ class ProductOrderClickEvent {
 
   ProductOrderClickEvent(this.orderId);
 }
+
+class ExchangeSuccessEvent {
+}

@@ -1,9 +1,12 @@
+import 'dart:async';
+
 import 'package:after_layout/after_layout.dart';
 import 'package:challenge_shop/common/state_cover.dart';
 import 'package:challenge_shop/data/model/paging_info.dart';
 import 'package:challenge_shop/data/model/product.dart';
 import 'package:challenge_shop/data/remote_service.dart';
 import 'package:challenge_shop/data/viewModel/shop_banner_viewmodel.dart';
+import 'package:challenge_shop/eventbus/event_bus.dart';
 import 'package:flutter/material.dart';
 import 'package:oktoast/oktoast.dart';
 import "package:pull_to_refresh/pull_to_refresh.dart";
@@ -23,7 +26,7 @@ class _HomePageState extends State<HomePage> with AfterLayoutMixin<HomePage> {
   RemoteService _dataService = RemoteService();
   RefreshController _refreshController;
   StateCoverController _stateCoverController;
-
+  StreamSubscription exchangeSuccessSubscription;
   bool isFinish = true;
 
   @override
@@ -36,7 +39,23 @@ class _HomePageState extends State<HomePage> with AfterLayoutMixin<HomePage> {
         _onRefresh(true);
       }
     });
+
+    exchangeSuccessSubscription = eventBus
+        .on<ExchangeSuccessEvent>()
+        .listen((ExchangeSuccessEvent event) {
+      _dataService.getHomeBannerModel().listen((bannermodel) {
+        setState(() { 
+          _shopBannerViewmodel = bannermodel;
+        });
+      });
+    });
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    exchangeSuccessSubscription.cancel();
+    super.dispose();
   }
 
   @override
@@ -74,9 +93,10 @@ class _HomePageState extends State<HomePage> with AfterLayoutMixin<HomePage> {
                   crossAxisSpacing: 4.0,
                   children: List.generate(_datalist?.length ?? 0, (index) {
                     return GoodsCell(
+                        productId: _datalist[index]?.id,
                         score: _datalist[index]?.point,
                         name: _datalist[index]?.title,
-                        imgUrl: _datalist[index]?.cover?.url,
+                        imgUrl: _datalist[index]?.cover?.thumb,
                         left: _datalist[index]?.inStockQuantity);
                   }),
                 ),

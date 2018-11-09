@@ -53,7 +53,7 @@ class RewardRecordCell extends StatelessWidget {
                 Container(
                   margin: EdgeInsets.only(left: 20, right: 20),
                   child: Image.network(
-                    "${order?.product?.cover.url ?? ""}",
+                    "${order?.product?.cover?.thumb ?? ""}",
                     width: 70,
                     height: 70,
                     fit: BoxFit.cover,
@@ -114,7 +114,7 @@ class RewardRecordCell extends StatelessWidget {
   }
 
   Color getStatusColor() {
-    if (order.statusLabel == "待发货") {
+    if (order.statusLabel == "未发货") {
       return Color(0xffE98943);
     } else {
       return Colors.black;
