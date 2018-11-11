@@ -1,4 +1,5 @@
 import 'package:after_layout/after_layout.dart';
+import 'package:challenge_shop/common/refresher_indicator_bulider.dart';
 import 'package:challenge_shop/common/state_cover.dart';
 import 'package:challenge_shop/data/model/paging_info.dart';
 import 'package:challenge_shop/data/model/score_history_info.dart';
@@ -65,6 +66,8 @@ class ScoreRecordPageState extends State<ScoreRecordPage>
               ScoreOverdueAlarm(scoreHistoryNotice),
               Expanded(
                 child: SmartRefresher(
+                  headerBuilder: RefresherIndicatorBuilder.buildHeader,
+                  footerBuilder: RefresherIndicatorBuilder.buildFooter,
                   enablePullDown: true,
                   enablePullUp: !isFinish,
                   onRefresh: _onRefresh,
@@ -82,6 +85,8 @@ class ScoreRecordPageState extends State<ScoreRecordPage>
       return StateCover(
           controller: _stateCoverController,
           child: SmartRefresher(
+            headerBuilder: RefresherIndicatorBuilder.buildHeader,
+            footerBuilder: RefresherIndicatorBuilder.buildFooter,
             enablePullDown: true,
             enablePullUp: !isFinish,
             onRefresh: _onRefresh,

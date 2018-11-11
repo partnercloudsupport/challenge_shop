@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:challenge_shop/common/loading_dialog.dart';
+import 'package:challenge_shop/common/refresher_indicator_bulider.dart';
 import 'package:challenge_shop/common/state_cover.dart';
 import 'package:challenge_shop/data/model/exchange_order.dart';
 import 'package:challenge_shop/data/model/paging_info.dart';
@@ -93,6 +94,8 @@ class RewardHistoryPageState extends State<RewardHistoryPage> with AfterLayoutMi
         body: StateCover(
             controller: _stateCoverController,
             child: SmartRefresher(
+              headerBuilder: RefresherIndicatorBuilder.buildHeader,
+              footerBuilder: RefresherIndicatorBuilder.buildFooter,
               enablePullDown: true,
               enablePullUp: !isFinish,
               onRefresh: _onRefresh,
