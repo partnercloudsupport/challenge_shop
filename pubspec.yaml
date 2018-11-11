@@ -74,6 +74,8 @@ flutter:
     - assets/json/score_history.json
     - assets/json/district.json
     - assets/json/exchange_form.json
+    - assets/json/do_post_example.json
+    - assets/json/latest_exchange_status.json
 
 
 

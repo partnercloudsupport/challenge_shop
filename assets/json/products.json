@@ -1,177 +1,180 @@
 {
-  "totalNum": 113,
-  "pageNo": 1,
-  "pageSize":  20,
-  "listData": [
-    {
-      "id": 13,
-      "title": "5积分商品",
-      "point": 5,
-      "inStockQuantity": 99,
-      "cover": {
-        "fileType": "png",
-        "thumb": "http://t00img.yangkeduo.com/goods/images/2018-10-18/1599c1d43a1a0fa2c9b3c442a08f9709.jpeg@750w_1l_50Q.src",
-        "height": 450,
-        "width": 600,
-        "url": "http://t00img.yangkeduo.com/goods/images/2018-10-18/1599c1d43a1a0fa2c9b3c442a08f9709.jpeg@750w_1l_50Q.src",
-        "original": "http://t00img.yangkeduo.com/goods/images/2018-10-18/1599c1d43a1a0fa2c9b3c442a08f9709.jpeg@750w_1l_50Q.src"
+  "status": 0,
+  "msg": "",
+  "data": {
+    "totalNum": 113,
+    "pageNo": 1,
+    "pageSize": 20,
+    "listData": [
+      {
+        "id": 13,
+        "title": "5积分商品",
+        "point": 5,
+        "inStockQuantity": 99,
+        "cover": {
+          "fileType": "png",
+          "thumb": "http://t00img.yangkeduo.com/goods/images/2018-10-18/1599c1d43a1a0fa2c9b3c442a08f9709.jpeg@750w_1l_50Q.src",
+          "height": 450,
+          "width": 600,
+          "url": "http://t00img.yangkeduo.com/goods/images/2018-10-18/1599c1d43a1a0fa2c9b3c442a08f9709.jpeg@750w_1l_50Q.src",
+          "original": "http://t00img.yangkeduo.com/goods/images/2018-10-18/1599c1d43a1a0fa2c9b3c442a08f9709.jpeg@750w_1l_50Q.src"
+        }
+      },
+      {
+        "id": 12,
+        "title": "测试刷新333",
+        "point": 102,
+        "inStockQuantity": 100,
+        "cover": {
+          "fileType": "png",
+          "thumb": "http://t00img.yangkeduo.com/goods/images/2018-10-18/1599c1d43a1a0fa2c9b3c442a08f9709.jpeg@750w_1l_50Q.src",
+          "height": 450,
+          "width": 600,
+          "url": "http://t00img.yangkeduo.com/goods/images/2018-10-18/1599c1d43a1a0fa2c9b3c442a08f9709.jpeg@750w_1l_50Q.src",
+          "original": "http://t00img.yangkeduo.com/goods/images/2018-10-18/1599c1d43a1a0fa2c9b3c442a08f9709.jpeg@750w_1l_50Q.src"
+        }
+      },
+      {
+        "id": 11,
+        "title": "测试10",
+        "point": 2,
+        "inStockQuantity": 3,
+        "cover": {
+          "fileType": "png",
+          "thumb": "http://t00img.yangkeduo.com/goods/images/2018-10-18/1599c1d43a1a0fa2c9b3c442a08f9709.jpeg@750w_1l_50Q.src",
+          "height": 450,
+          "width": 600,
+          "url": "http://t00img.yangkeduo.com/goods/images/2018-10-18/1599c1d43a1a0fa2c9b3c442a08f9709.jpeg@750w_1l_50Q.src",
+          "original": "http://t00img.yangkeduo.com/goods/images/2018-10-18/1599c1d43a1a0fa2c9b3c442a08f9709.jpeg@750w_1l_50Q.src"
+        }
+      },
+      {
+        "id": 10,
+        "title": "测试9",
+        "point": 3,
+        "inStockQuantity": 0,
+        "cover": {
+          "fileType": "png",
+          "thumb": "http://t00img.yangkeduo.com/goods/images/2018-10-18/1599c1d43a1a0fa2c9b3c442a08f9709.jpeg@750w_1l_50Q.src",
+          "height": 450,
+          "width": 600,
+          "url": "http://t00img.yangkeduo.com/goods/images/2018-10-18/1599c1d43a1a0fa2c9b3c442a08f9709.jpeg@750w_1l_50Q.src",
+          "original": "http://t00img.yangkeduo.com/goods/images/2018-10-18/1599c1d43a1a0fa2c9b3c442a08f9709.jpeg@750w_1l_50Q.src"
+        }
+      },
+      {
+        "id": 9,
+        "title": "东方大厦",
+        "point": 5786,
+        "inStockQuantity": 9999,
+        "cover": {
+          "fileType": "jpg",
+          "thumb": "http://t00img.yangkeduo.com/goods/images/2018-10-18/1599c1d43a1a0fa2c9b3c442a08f9709.jpeg@750w_1l_50Q.src",
+          "height": 540,
+          "width": 960,
+          "url": "http://t00img.yangkeduo.com/goods/images/2018-10-18/1599c1d43a1a0fa2c9b3c442a08f9709.jpeg@750w_1l_50Q.src",
+          "original": "http://t00img.yangkeduo.com/goods/images/2018-10-18/1599c1d43a1a0fa2c9b3c442a08f9709.jpeg@750w_1l_50Q.src"
+        }
+      },
+      {
+        "id": 7,
+        "title": "54545",
+        "point": 2,
+        "inStockQuantity": 3,
+        "cover": {
+          "fileType": "jpg",
+          "thumb": "http://t00img.yangkeduo.com/goods/images/2018-10-18/1599c1d43a1a0fa2c9b3c442a08f9709.jpeg@750w_1l_50Q.src",
+          "height": 540,
+          "width": 960,
+          "url": "http://t00img.yangkeduo.com/goods/images/2018-10-18/1599c1d43a1a0fa2c9b3c442a08f9709.jpeg@750w_1l_50Q.src",
+          "original": "http://t00img.yangkeduo.com/goods/images/2018-10-18/1599c1d43a1a0fa2c9b3c442a08f9709.jpeg@750w_1l_50Q.src"
+        }
+      },
+      {
+        "id": 6,
+        "title": "测试777",
+        "point": 3,
+        "inStockQuantity": 2,
+        "cover": {
+          "fileType": "png",
+          "thumb": "http://t00img.yangkeduo.com/goods/images/2018-10-18/1599c1d43a1a0fa2c9b3c442a08f9709.jpeg@750w_1l_50Q.src",
+          "height": 640,
+          "width": 1500,
+          "url": "http://t00img.yangkeduo.com/goods/images/2018-10-18/1599c1d43a1a0fa2c9b3c442a08f9709.jpeg@750w_1l_50Q.src",
+          "original": "http://t00img.yangkeduo.com/goods/images/2018-10-18/1599c1d43a1a0fa2c9b3c442a08f9709.jpeg@750w_1l_50Q.src"
+        }
+      },
+      {
+        "id": 5,
+        "title": "666",
+        "point": 28,
+        "inStockQuantity": 11,
+        "cover": {
+          "fileType": "png",
+          "thumb": "http://t00img.yangkeduo.com/goods/images/2018-10-18/1599c1d43a1a0fa2c9b3c442a08f9709.jpeg@750w_1l_50Q.src",
+          "height": 1100,
+          "width": 870,
+          "url": "http://t00img.yangkeduo.com/goods/images/2018-10-18/1599c1d43a1a0fa2c9b3c442a08f9709.jpeg@750w_1l_50Q.src",
+          "original": "http://t00img.yangkeduo.com/goods/images/2018-10-18/1599c1d43a1a0fa2c9b3c442a08f9709.jpeg@750w_1l_50Q.src"
+        }
+      },
+      {
+        "id": 4,
+        "title": "444",
+        "point": 12,
+        "inStockQuantity": 11,
+        "cover": {
+          "fileType": "jpg",
+          "thumb": "http://t00img.yangkeduo.com/goods/images/2018-10-18/1599c1d43a1a0fa2c9b3c442a08f9709.jpeg@750w_1l_50Q.src",
+          "height": 151,
+          "width": 153,
+          "url": "http://t00img.yangkeduo.com/goods/images/2018-10-18/1599c1d43a1a0fa2c9b3c442a08f9709.jpeg@750w_1l_50Q.src",
+          "original": "http://t00img.yangkeduo.com/goods/images/2018-10-18/1599c1d43a1a0fa2c9b3c442a08f9709.jpeg@750w_1l_50Q.src"
+        }
+      },
+      {
+        "id": 3,
+        "title": "测试测试测试测试测试测试",
+        "point": 4,
+        "inStockQuantity": 48,
+        "cover": {
+          "fileType": "png",
+          "thumb": "http://t00img.yangkeduo.com/goods/images/2018-10-18/1599c1d43a1a0fa2c9b3c442a08f9709.jpeg@750w_1l_50Q.src",
+          "height": 222,
+          "width": 222,
+          "url": "http://t00img.yangkeduo.com/goods/images/2018-10-18/1599c1d43a1a0fa2c9b3c442a08f9709.jpeg@750w_1l_50Q.src",
+          "original": "http://t00img.yangkeduo.com/goods/images/2018-10-18/1599c1d43a1a0fa2c9b3c442a08f9709.jpeg@750w_1l_50Q.src"
+        }
+      },
+      {
+        "id": 2,
+        "title": "5555",
+        "point": 1000,
+        "inStockQuantity": 17,
+        "cover": {
+          "fileType": "png",
+          "thumb": "http://t00img.yangkeduo.com/goods/images/2018-10-18/1599c1d43a1a0fa2c9b3c442a08f9709.jpeg@750w_1l_50Q.src",
+          "height": 498,
+          "width": 598,
+          "url": "http://t00img.yangkeduo.com/goods/images/2018-10-18/1599c1d43a1a0fa2c9b3c442a08f9709.jpeg@750w_1l_50Q.src",
+          "original": "http://t00img.yangkeduo.com/goods/images/2018-10-18/1599c1d43a1a0fa2c9b3c442a08f9709.jpeg@750w_1l_50Q.src"
+        }
+      },
+      {
+        "id": 1,
+        "title": "HEROCROSS 蝙超 Q版超合金超人",
+        "point": 1,
+        "inStockQuantity": 3,
+        "cover": {
+          "fileType": "png",
+          "thumb": "http://t00img.yangkeduo.com/goods/images/2018-10-18/1599c1d43a1a0fa2c9b3c442a08f9709.jpeg@750w_1l_50Q.src",
+          "height": 634,
+          "width": 795,
+          "url": "http://t00img.yangkeduo.com/goods/images/2018-10-18/1599c1d43a1a0fa2c9b3c442a08f9709.jpeg@750w_1l_50Q.src",
+          "original": "http://t00img.yangkeduo.com/goods/images/2018-10-18/1599c1d43a1a0fa2c9b3c442a08f9709.jpeg@750w_1l_50Q.src"
+        }
       }
-    },
-    {
-      "id": 12,
-      "title": "测试刷新333",
-      "point": 102,
-      "inStockQuantity": 100,
-      "cover": {
-        "fileType": "png",
-        "thumb": "http://t00img.yangkeduo.com/goods/images/2018-10-18/1599c1d43a1a0fa2c9b3c442a08f9709.jpeg@750w_1l_50Q.src",
-        "height": 450,
-        "width": 600,
-        "url": "http://t00img.yangkeduo.com/goods/images/2018-10-18/1599c1d43a1a0fa2c9b3c442a08f9709.jpeg@750w_1l_50Q.src",
-        "original": "http://t00img.yangkeduo.com/goods/images/2018-10-18/1599c1d43a1a0fa2c9b3c442a08f9709.jpeg@750w_1l_50Q.src"
-      }
-    },
-    {
-      "id": 11,
-      "title": "测试10",
-      "point": 2,
-      "inStockQuantity": 3,
-      "cover": {
-        "fileType": "png",
-        "thumb": "http://t00img.yangkeduo.com/goods/images/2018-10-18/1599c1d43a1a0fa2c9b3c442a08f9709.jpeg@750w_1l_50Q.src",
-        "height": 450,
-        "width": 600,
-        "url": "http://t00img.yangkeduo.com/goods/images/2018-10-18/1599c1d43a1a0fa2c9b3c442a08f9709.jpeg@750w_1l_50Q.src",
-        "original": "http://t00img.yangkeduo.com/goods/images/2018-10-18/1599c1d43a1a0fa2c9b3c442a08f9709.jpeg@750w_1l_50Q.src"
-      }
-    },
-    {
-      "id": 10,
-      "title": "测试9",
-      "point": 3,
-      "inStockQuantity": 0,
-      "cover": {
-        "fileType": "png",
-        "thumb": "http://t00img.yangkeduo.com/goods/images/2018-10-18/1599c1d43a1a0fa2c9b3c442a08f9709.jpeg@750w_1l_50Q.src",
-        "height": 450,
-        "width": 600,
-        "url": "http://t00img.yangkeduo.com/goods/images/2018-10-18/1599c1d43a1a0fa2c9b3c442a08f9709.jpeg@750w_1l_50Q.src",
-        "original": "http://t00img.yangkeduo.com/goods/images/2018-10-18/1599c1d43a1a0fa2c9b3c442a08f9709.jpeg@750w_1l_50Q.src"
-      }
-    },
-    {
-      "id": 9,
-      "title": "东方大厦",
-      "point": 5786,
-      "inStockQuantity": 9999,
-      "cover": {
-        "fileType": "jpg",
-        "thumb": "http://t00img.yangkeduo.com/goods/images/2018-10-18/1599c1d43a1a0fa2c9b3c442a08f9709.jpeg@750w_1l_50Q.src",
-        "height": 540,
-        "width": 960,
-        "url": "http://t00img.yangkeduo.com/goods/images/2018-10-18/1599c1d43a1a0fa2c9b3c442a08f9709.jpeg@750w_1l_50Q.src",
-        "original": "http://t00img.yangkeduo.com/goods/images/2018-10-18/1599c1d43a1a0fa2c9b3c442a08f9709.jpeg@750w_1l_50Q.src"
-      }
-    },
-
-    {
-      "id": 7,
-      "title": "54545",
-      "point": 2,
-      "inStockQuantity": 3,
-      "cover": {
-        "fileType": "jpg",
-        "thumb": "http://t00img.yangkeduo.com/goods/images/2018-10-18/1599c1d43a1a0fa2c9b3c442a08f9709.jpeg@750w_1l_50Q.src",
-        "height": 540,
-        "width": 960,
-        "url": "http://t00img.yangkeduo.com/goods/images/2018-10-18/1599c1d43a1a0fa2c9b3c442a08f9709.jpeg@750w_1l_50Q.src",
-        "original": "http://t00img.yangkeduo.com/goods/images/2018-10-18/1599c1d43a1a0fa2c9b3c442a08f9709.jpeg@750w_1l_50Q.src"
-      }
-    },
-    {
-      "id": 6,
-      "title": "测试777",
-      "point": 3,
-      "inStockQuantity": 2,
-      "cover": {
-        "fileType": "png",
-        "thumb": "http://t00img.yangkeduo.com/goods/images/2018-10-18/1599c1d43a1a0fa2c9b3c442a08f9709.jpeg@750w_1l_50Q.src",
-        "height": 640,
-        "width": 1500,
-        "url": "http://t00img.yangkeduo.com/goods/images/2018-10-18/1599c1d43a1a0fa2c9b3c442a08f9709.jpeg@750w_1l_50Q.src",
-        "original": "http://t00img.yangkeduo.com/goods/images/2018-10-18/1599c1d43a1a0fa2c9b3c442a08f9709.jpeg@750w_1l_50Q.src"
-      }
-    },
-    {
-      "id": 5,
-      "title": "666",
-      "point": 28,
-      "inStockQuantity": 11,
-      "cover": {
-        "fileType": "png",
-        "thumb": "http://t00img.yangkeduo.com/goods/images/2018-10-18/1599c1d43a1a0fa2c9b3c442a08f9709.jpeg@750w_1l_50Q.src",
-        "height": 1100,
-        "width": 870,
-        "url": "http://t00img.yangkeduo.com/goods/images/2018-10-18/1599c1d43a1a0fa2c9b3c442a08f9709.jpeg@750w_1l_50Q.src",
-        "original": "http://t00img.yangkeduo.com/goods/images/2018-10-18/1599c1d43a1a0fa2c9b3c442a08f9709.jpeg@750w_1l_50Q.src"
-      }
-    },
-    {
-      "id": 4,
-      "title": "444",
-      "point": 12,
-      "inStockQuantity": 11,
-      "cover": {
-        "fileType": "jpg",
-        "thumb": "http://t00img.yangkeduo.com/goods/images/2018-10-18/1599c1d43a1a0fa2c9b3c442a08f9709.jpeg@750w_1l_50Q.src",
-        "height": 151,
-        "width": 153,
-        "url": "http://t00img.yangkeduo.com/goods/images/2018-10-18/1599c1d43a1a0fa2c9b3c442a08f9709.jpeg@750w_1l_50Q.src",
-        "original": "http://t00img.yangkeduo.com/goods/images/2018-10-18/1599c1d43a1a0fa2c9b3c442a08f9709.jpeg@750w_1l_50Q.src"
-      }
-    },
-    {
-      "id": 3,
-      "title": "测试测试测试测试测试测试",
-      "point": 4,
-      "inStockQuantity": 48,
-      "cover": {
-        "fileType": "png",
-        "thumb": "http://t00img.yangkeduo.com/goods/images/2018-10-18/1599c1d43a1a0fa2c9b3c442a08f9709.jpeg@750w_1l_50Q.src",
-        "height": 222,
-        "width": 222,
-        "url": "http://t00img.yangkeduo.com/goods/images/2018-10-18/1599c1d43a1a0fa2c9b3c442a08f9709.jpeg@750w_1l_50Q.src",
-        "original": "http://t00img.yangkeduo.com/goods/images/2018-10-18/1599c1d43a1a0fa2c9b3c442a08f9709.jpeg@750w_1l_50Q.src"
-      }
-    },
-    {
-      "id": 2,
-      "title": "5555",
-      "point": 1000,
-      "inStockQuantity": 17,
-      "cover": {
-        "fileType": "png",
-        "thumb": "http://t00img.yangkeduo.com/goods/images/2018-10-18/1599c1d43a1a0fa2c9b3c442a08f9709.jpeg@750w_1l_50Q.src",
-        "height": 498,
-        "width": 598,
-        "url": "http://t00img.yangkeduo.com/goods/images/2018-10-18/1599c1d43a1a0fa2c9b3c442a08f9709.jpeg@750w_1l_50Q.src",
-        "original": "http://t00img.yangkeduo.com/goods/images/2018-10-18/1599c1d43a1a0fa2c9b3c442a08f9709.jpeg@750w_1l_50Q.src"
-      }
-    },
-    {
-      "id": 1,
-      "title": "HEROCROSS 蝙超 Q版超合金超人",
-      "point": 1,
-      "inStockQuantity": 3,
-      "cover": {
-        "fileType": "png",
-        "thumb": "http://t00img.yangkeduo.com/goods/images/2018-10-18/1599c1d43a1a0fa2c9b3c442a08f9709.jpeg@750w_1l_50Q.src",
-        "height": 634,
-        "width": 795,
-        "url": "http://t00img.yangkeduo.com/goods/images/2018-10-18/1599c1d43a1a0fa2c9b3c442a08f9709.jpeg@750w_1l_50Q.src",
-        "original": "http://t00img.yangkeduo.com/goods/images/2018-10-18/1599c1d43a1a0fa2c9b3c442a08f9709.jpeg@750w_1l_50Q.src"
-      }
-    }
-  ],
-  "extras": null
+    ],
+    "extras": null
+  }
 }

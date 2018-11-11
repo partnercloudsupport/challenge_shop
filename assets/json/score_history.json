@@ -1,4 +1,7 @@
 {
+  "status": 0,
+  "msg": "",
+  "data": {
     "totalNum": 113,
     "pageNo": 1,
     "pageSize": 20,
@@ -26,7 +29,8 @@
         "direct": "+",
         "productTitle": "",
         "challengeTitle": "这是一个挑战，却又不是一个挑战"
-      },  {
+      },
+      {
         "createTime": 1539913673,
         "title": "兑换商品",
         "point": 10,
@@ -49,7 +53,8 @@
         "direct": "+",
         "productTitle": "",
         "challengeTitle": "这是一个挑战，却又不是一个挑战"
-      },  {
+      },
+      {
         "createTime": 1539913673,
         "title": "兑换商品",
         "point": 10,
@@ -72,7 +77,8 @@
         "direct": "+",
         "productTitle": "",
         "challengeTitle": "这是一个挑战，却又不是一个挑战"
-      },  {
+      },
+      {
         "createTime": 1539913673,
         "title": "兑换商品",
         "point": 10,
@@ -95,7 +101,8 @@
         "direct": "+",
         "productTitle": "",
         "challengeTitle": "这是一个挑战，却又不是一个挑战"
-      },  {
+      },
+      {
         "createTime": 1539913673,
         "title": "兑换商品",
         "point": 10,
@@ -118,7 +125,8 @@
         "direct": "+",
         "productTitle": "",
         "challengeTitle": "这是一个挑战，却又不是一个挑战"
-      },  {
+      },
+      {
         "createTime": 1539913673,
         "title": "兑换商品",
         "point": 10,
@@ -141,7 +149,8 @@
         "direct": "+",
         "productTitle": "",
         "challengeTitle": "这是一个挑战，却又不是一个挑战"
-      },  {
+      },
+      {
         "createTime": 1539913673,
         "title": "兑换商品",
         "point": 10,
@@ -164,7 +173,8 @@
         "direct": "+",
         "productTitle": "",
         "challengeTitle": "这是一个挑战，却又不是一个挑战"
-      },  {
+      },
+      {
         "createTime": 1539913673,
         "title": "兑换商品",
         "point": 10,
@@ -187,7 +197,8 @@
         "direct": "+",
         "productTitle": "",
         "challengeTitle": "这是一个挑战，却又不是一个挑战"
-      },  {
+      },
+      {
         "createTime": 1539913673,
         "title": "兑换商品",
         "point": 10,
@@ -216,4 +227,5 @@
       "point": 6,
       "date": "2018年12月31日"
     }
+  }
 }
