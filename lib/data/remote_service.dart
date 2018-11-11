@@ -19,8 +19,8 @@ import 'package:challenge_shop/error/unlogin_result_error.dart';
 import 'package:rxdart/rxdart.dart';
 
 class RemoteService {
-  Api _api = Api("http://challenge.dev.17173.com/api");
-//  MockApi _api=MockApi();
+//  Api _api = Api("http://challenge.dev.17173.com/api");
+  MockApi _api=MockApi();
 
   Observable<ShopBannerViewmodel> getHomeBannerModel() {
     return getMyPoint().zipWith(getLatestExchangeStatus(),
