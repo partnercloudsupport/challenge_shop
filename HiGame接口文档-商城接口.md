@@ -249,7 +249,7 @@
                     },
                     {
                         "label": "邮政编码",
-                        "value": "3350005"
+                        "value": "350001"
                     },
                     {
                         "label": "QQ",
@@ -495,7 +495,7 @@ address 地址类型在前端需要进行扩展，地址选择器可以调用 `/
       "required":true,
       "value": {
           "userName":"1212",
-          "postalCode":"3350005",
+          "postalCode":"350001",
           "provinceName":"福建省",
           "provinceId":2,
           "cityName":"福州市",
@@ -534,7 +534,7 @@ address 地址类型在前端需要进行扩展，地址选择器可以调用 `/
 {
    "address": {
        "userName":"1212",
-       "postalCode":"3350005",
+       "postalCode":"350001",
        "provinceId":2,
        "cityId":4,
        "areaId":6,
